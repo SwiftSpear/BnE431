@@ -147,7 +147,7 @@ void getPivot(int nsize, int currow)
 }
 
 /* For all the rows, get the pivot and eliminate all rows and columns
- * for that particular pivot row. */
+ * for that particular pivot row. EDIT THIS FUNTION*/
 
 void computeGauss(int nsize)
 {
@@ -179,7 +179,7 @@ void computeGauss(int nsize)
     }
 }
 
-/* Solve the equation. */
+/* Solve the equation. DO NOT EDIT HERE*/
 
 void solveGauss(int nsize)
 {
