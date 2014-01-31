@@ -42,10 +42,10 @@
  */
 
 struct timeval start, finish;
-int iterations = 300;
+int iterations = 200;
 
-int M = 12000;
-int N = 1500;
+int M = 8000;
+int N = 1000;
 int verify = 1;	/*print the result to file if set to 1 */
 
 float **red_;

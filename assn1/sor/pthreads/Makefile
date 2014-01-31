@@ -18,7 +18,7 @@ SOURCES =   $(HFILES) $(CFILES) $(OTHERSOURCES)
 	$(CC) -c $(CFLAGS) $*.c
 
 $(BIN): $(OBJECTS)
-	$(CC) $(LFLAGS) -o $(BIN) $(OBJECTS)
+	$(CC) -o $(BIN) $(OBJECTS) $(LFLAGS)
 
 tags: $(CFILES) $(HFILES) $(EXTRACTCFILES) $(RECOGCFILES)
 # for vi:
