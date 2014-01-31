@@ -2,14 +2,15 @@
 
 .SUFFIXES: .o .c
 
-CC = gcc
-CFLAGS = -g -O3
-LFLAGS = -lm 
+CC = cxx 
+#gcc
+CFLAGS = -g3 -D_REENTRANT
+LFLAGS = -lm -lpthread
 
 CTAGS =     ctags
 BIN = sor
-CFILES =   sor.c
-OBJECTS =  sor.o
+CFILES =   sor_pthread.c
+OBJECTS =  sor_pthread.o
 HFILES = 
 OTHERSOURCES =  
 SOURCES =   $(HFILES) $(CFILES) $(OTHERSOURCES)
@@ -18,7 +19,7 @@ SOURCES =   $(HFILES) $(CFILES) $(OTHERSOURCES)
 	$(CC) -c $(CFLAGS) $*.c
 
 $(BIN): $(OBJECTS)
-	$(CC) -o $(BIN) $(OBJECTS) $(LFLAGS)
+	$(CC) $(LFLAGS) -o $(BIN) $(OBJECTS)
 
 tags: $(CFILES) $(HFILES) $(EXTRACTCFILES) $(RECOGCFILES)
 # for vi:
