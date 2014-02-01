@@ -2,6 +2,7 @@
  * Original author:  UNKNOWN
  *
  * Modified:         Kai Shen (January 2010)
+ *                   Ben Cribb (Febuary 2014)
  */
 
 #include <pthread.h>
