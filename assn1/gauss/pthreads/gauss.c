@@ -174,11 +174,38 @@ void getPivot(int nsize, int currow, int task_id)
 
 /* For all the rows, get the pivot and eliminate all rows and columns
  * for that particular pivot row. EDIT THIS FUNTION*/
-
+void *work_thread (void *threadid)
+{
+    int tid;
+    tid = (int)threadid;
+    printf("Hello World! It's me, thread #%d!\n", tid);
+    pthread_exit(NULL);
+}
 void computeGauss(int nsize)
 {
     int i, j, k;
     double pivotval;
+    int *id;
+    pthread_attr_t attr;
+    pthread_t *tid;
+    // create threads
+    id = (int *) malloc (sizeof (int) * task_num);
+    tid = (pthread_t *) malloc (sizeof (pthread_t) * task_num);
+    if (!id || !tid)
+        {
+        fprintf(stderr, "out of memory\n");
+        exit(-1);
+        }
+
+    pthread_attr_init (&attr);
+    pthread_attr_setscope (&attr, PTHREAD_SCOPE_SYSTEM);
+    for (i = 1; i < task_num; i++) {
+        id[i] = i;
+        pthread_create (&tid[i], &attr, work_thread, &id[i]);
+    }
+
+    id[0]=0;
+
     //for each column, do the gausian thing to zero out the value of each row except the pivot
     //this part cannot be parallelized because the value of one loop effects the value of the
     //next loop.
@@ -205,6 +232,7 @@ void computeGauss(int nsize)
         for (id = 0; id < task_num; id++) {
             int useless = id;
         }
+
         for (j = i + 1; j < nsize; j++) {
             pivotval = matrix[j][i];
             matrix[j][i] = 0.0;

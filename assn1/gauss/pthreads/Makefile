@@ -2,7 +2,7 @@ all: gauss
 
 CC = gcc
 CCFLAGS = -g -Wall -O3 -D_REENTRANT
-LDFLAGS = -g -Wall -O3
+LDFLAGS = -lm -pthread
 
 gauss: gauss.o
 	$(CC) $(LDFLAGS) -o gauss gauss.o
