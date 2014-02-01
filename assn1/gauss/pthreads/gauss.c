@@ -4,6 +4,7 @@
  * Modified:         Kai Shen (January 2010)
  */
 
+#include <pthread.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -26,6 +27,9 @@ double **matrix, *X, *R;
 
 double *X__;
 
+/* Initialize pthread stuff */
+pthread_mutex_t mut = PTHREAD_MUTEX_INITIALIZER;
+pthread_cond_t cond = PTHREAD_COND_INITIALIZER;
 /* Initialize the matirx. */
 
 int initMatrix(const char *fname)
@@ -33,7 +37,7 @@ int initMatrix(const char *fname)
     FILE *file;
     int l1, l2, l3;
     double d;
-    int nsize;
+    int nsize; //the number of columns
     int i, j;
     double *tmp;
     char buffer[1024];
@@ -62,7 +66,7 @@ int initMatrix(const char *fname)
     }
     for (i = 0; i < nsize; i++) {
         for (j = 0; j < nsize; j++) {
-            matrix[i][j] = 0.0;
+            matrix[i][j] = 0.0; //matrix[i] is column, matrix[i][j] is row
         }
     }
 
@@ -82,7 +86,8 @@ int initMatrix(const char *fname)
     return nsize;
 }
 
-/* Initialize the right-hand-side following the pre-set solution. */
+/* Initialize the right-hand-side following the pre-set solution. 
+this is the vector we multiply the matrix by.  We don't need to worry about it much*/
 
 void initRHS(int nsize)
 {
@@ -104,7 +109,7 @@ void initRHS(int nsize)
     }
 }
 
-/* Initialize the results. */
+/* Initialize the results. this array is the vector that will take the solution ultimately, ignore mostly*/
 
 void initResult(int nsize)
 {
@@ -117,7 +122,9 @@ void initResult(int nsize)
     }
 }
 
-/* Get the pivot - the element on column with largest absolute value. */
+/* Get the pivot - the element on column with largest absolute value. 
+Parallelization strategy:  Give chunks of the column to each thread, have them
+compute the largest element in thier chunk, then merge the results.*/
 
 void getPivot(int nsize, int currow)
 {
@@ -153,10 +160,16 @@ void computeGauss(int nsize)
 {
     int i, j, k;
     double pivotval;
-    
+    //for each column, do the gausian thing to zero out the value of each row except the pivot
+    //this part cannot be parallelized because the value of one loop effects the value of the
+    //next loop.
     for (i = 0; i < nsize; i++) {
+        //add a multithreaded thing here
 	getPivot(nsize,i);
-        
+        //wait until all threads are finished and pick the best pivot of the results
+
+        //for each element in the column, multiply by scaling factor, test parallelzing
+        //such that chunks of the column are handled by different threads (low priority)
 	/* Scale the main row. */
         pivotval = matrix[i][i];
 	if (pivotval != 1.0) {
@@ -166,7 +179,9 @@ void computeGauss(int nsize)
 	    }
 	    R[i] /= pivotval;
 	}
-        
+
+        //for every row, add/subtract row1 such that element 1 of that column equals zero
+        //assign chunks of work to threads, experiment with checkerboard etc.        
 	/* Factorize the rest of the matrix. */
         for (j = i + 1; j < nsize; j++) {
             pivotval = matrix[j][i];

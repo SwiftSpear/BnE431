@@ -1,7 +1,7 @@
 all: gauss
 
 CC = gcc
-CCFLAGS = -g -Wall -O3
+CCFLAGS = -g -Wall -O3 -D_REENTRANT
 LDFLAGS = -g -Wall -O3
 
 gauss: gauss.o
