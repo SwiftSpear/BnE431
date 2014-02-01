@@ -28,6 +28,7 @@ double **matrix, *X, *R;
 double *X__;
 int task_num = 8; //define some way to customize this later if there's time
 /* Initialize pthread stuff */
+int strategy = 0; //which matrix factorization strategy to use, 0 = rows
 pthread_mutex_t mut = PTHREAD_MUTEX_INITIALIZER;
 pthread_cond_t cond = PTHREAD_COND_INITIALIZER;
 
@@ -219,13 +220,13 @@ void *ComputeGauss(void *arguments)
             }
         }
         barrier(task_num);
-
-        if(task_id==0) {
-
+        if (strategy == 0) //row strategy
+        {
             //for every row, add/subtract row1 such that element 1 of that column equals zero
-            //assign chunks of work to threads, experiment with checkerboard etc.        
+            //assign chunks of work to threads        
             /* Factorize the rest of the matrix. */
-            for (j = i + 1; j < nsize; j++) {
+            double splitfactor = ceil(((double)nsize-(double)i)/(double)task_num);
+            for (j = i+(splitfactor*task_id)+1; (j < i+(splitfactor*(task_id+1))) && (j < nsize); j++) {
                 pivotval = matrix[j][i];
                 matrix[j][i] = 0.0;
                 for (k = i + 1; k < nsize; k++) {
