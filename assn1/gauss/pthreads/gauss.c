@@ -172,76 +172,73 @@ void getPivot(int nsize, int currow, int task_id)
     }
 }
 
+struct stupidargs {
+    int task_id;
+    int nsize;
+};
+
+
 /* For all the rows, get the pivot and eliminate all rows and columns
  * for that particular pivot row. EDIT THIS FUNTION*/
-void *work_thread (void *threadid)
+
+void *ComputeGauss(void *arguments)
 {
-    int tid;
-    tid = (int)threadid;
-    printf("Hello World! It's me, thread #%d!\n", tid);
-    pthread_exit(NULL);
-}
-void computeGauss(int nsize)
-{
+    struct stupidargs *args = arguments;
+    int task_id = args->task_id;
+    int nsize = args->nsize;
     int i, j, k;
     double pivotval;
-    int *id;
-    pthread_attr_t attr;
-    pthread_t *tid;
-    // create threads
-    id = (int *) malloc (sizeof (int) * task_num);
-    tid = (pthread_t *) malloc (sizeof (pthread_t) * task_num);
-    if (!id || !tid)
-        {
-        fprintf(stderr, "out of memory\n");
-        exit(-1);
-        }
-
-    pthread_attr_init (&attr);
-    pthread_attr_setscope (&attr, PTHREAD_SCOPE_SYSTEM);
-    for (i = 1; i < task_num; i++) {
-        id[i] = i;
-        pthread_create (&tid[i], &attr, work_thread, &id[i]);
-    }
-
-    id[0]=0;
 
     //for each column, do the gausian thing to zero out the value of each row except the pivot
     //this part cannot be parallelized because the value of one loop effects the value of the
     //next loop.
     for (i = 0; i < nsize; i++) {
-        //add a multithreaded thing here
-	getPivot(nsize,i,0);
-        //wait until all threads are finished and pick the best pivot of the results
 
-        //for each element in the column, multiply by scaling factor, test parallelzing
-        //such that chunks of the column are handled by different threads (low priority)
-	/* Scale the main row. */
-        pivotval = matrix[i][i];
-	if (pivotval != 1.0) {
-	    matrix[i][i] = 1.0;
-	    for (j = i + 1; j < nsize; j++) {
-		matrix[i][j] /= pivotval;
-	    }
-	    R[i] /= pivotval;
-	}
-
-        //for every row, add/subtract row1 such that element 1 of that column equals zero
-        //assign chunks of work to threads, experiment with checkerboard etc.        
-	/* Factorize the rest of the matrix. */
-        for (id = 0; id < task_num; id++) {
-            int useless = id;
+        //for each column, do the gausian thing to zero out the value of each row except the pivot
+        //this part cannot be parallelized because the value of one loop effects the value of the
+        //next loop.
+        if(task_id==0) { 
+            //add a multithreaded thing here
+            getPivot(nsize,i,0);
         }
+        barrier (task_num);
 
-        for (j = i + 1; j < nsize; j++) {
-            pivotval = matrix[j][i];
-            matrix[j][i] = 0.0;
-            for (k = i + 1; k < nsize; k++) {
-                matrix[j][k] -= pivotval * matrix[i][k];
+        if(task_id==0) {
+            //wait until all threads are finished and pick the best pivot of the results
+
+            //for each element in the column, multiply by scaling factor, test parallelzing
+            //such that chunks of the column are handled by different threads (low priority)
+            /* Scale the main row. */
+            pivotval = matrix[i][i];
+            if (pivotval != 1.0) {
+                matrix[i][i] = 1.0;
+                for (j = i + 1; j < nsize; j++) {
+            	matrix[i][j] /= pivotval;
+                }
+                R[i] /= pivotval;
             }
-            R[j] -= pivotval * R[i];
         }
+        barrier(task_num);
+
+        if(task_id==0) {
+
+            //for every row, add/subtract row1 such that element 1 of that column equals zero
+            //assign chunks of work to threads, experiment with checkerboard etc.        
+            /* Factorize the rest of the matrix. */
+            for (j = i + 1; j < nsize; j++) {
+                pivotval = matrix[j][i];
+                matrix[j][i] = 0.0;
+                for (k = i + 1; k < nsize; k++) {
+                    matrix[j][k] -= pivotval * matrix[i][k];
+                }
+                R[j] -= pivotval * R[i];
+            }
+        }
+        barrier (task_num);
     }
+    if ((int)task_id != 0)
+        pthread_exit(NULL);
+    
 }
 
 /* Solve the equation. DO NOT EDIT HERE*/
@@ -267,6 +264,7 @@ void solveGauss(int nsize)
 #endif
 }
 
+
 int main(int argc, char *argv[])
 {
     int i;
@@ -284,7 +282,38 @@ int main(int argc, char *argv[])
     initResult(nsize);
 
     gettimeofday(&start, 0);
-    computeGauss(nsize);
+
+    int *id;
+    struct stupidargs *args;
+    pthread_attr_t attr;
+    pthread_t *tid;
+    // create threads
+    id = (int *) malloc (sizeof (int) * task_num);
+    args = (struct stupidargs *) malloc (sizeof (struct stupidargs) * task_num);
+    tid = (pthread_t *) malloc (sizeof (pthread_t) * task_num);
+    if (!id || !tid)
+        {
+        fprintf(stderr, "out of memory\n");
+        exit(-1);
+        }
+
+    pthread_attr_init (&attr);
+    pthread_attr_setscope (&attr, PTHREAD_SCOPE_SYSTEM);
+    for (i = 1; i < task_num; i++) {
+        id[i] = i;
+        args[i].task_id = id[i];
+        args[i].nsize = nsize;
+        pthread_create (&tid[i], &attr, ComputeGauss, (void *)&args[i]);
+    }
+    
+    id[0] = 0;
+    args[0].task_id = id[0];
+    args[0].nsize = nsize;
+
+    ComputeGauss(&args[0]);
+    for (i = 1; i<task_num; i++)
+        pthread_join(tid[i], NULL);
+
     gettimeofday(&finish, 0);
 
     solveGauss(nsize);
