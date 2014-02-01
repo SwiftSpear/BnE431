@@ -227,6 +227,9 @@ void *ComputeGauss(void *arguments)
             //assign chunks of work to threads        
             /* Factorize the rest of the matrix. */
             double splitfactor = ceil(((double)nsize-(double)i)/(double)task_num);
+            /*
+            Something is off in my math here and it's creating a lot of error...  if you have time could you look at it elvis?
+            */
             for (j = i+(splitfactor*task_id)+1; (j < i+(splitfactor*(task_id+1))) && (j < nsize); j++) {
                 pivotval = matrix[j][i];
                 matrix[j][i] = 0.0;
