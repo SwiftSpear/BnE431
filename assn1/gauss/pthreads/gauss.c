@@ -26,10 +26,29 @@ double **matrix, *X, *R;
 /* Pre-set solution. */
 
 double *X__;
-
+int task_num = 8; //define some way to customize this later if there's time
 /* Initialize pthread stuff */
 pthread_mutex_t mut = PTHREAD_MUTEX_INITIALIZER;
 pthread_cond_t cond = PTHREAD_COND_INITIALIZER;
+
+void barrier (int expect)
+{
+    static int arrived = 0;
+
+    pthread_mutex_lock (&mut);  //lock
+
+    arrived++;
+    if (arrived < expect)
+        pthread_cond_wait (&cond, &mut);
+    else {
+        arrived = 0;            // reset the barrier before broadcast is important
+        pthread_cond_broadcast (&cond);
+    }
+
+    pthread_mutex_unlock (&mut);        //unlock
+}
+
+
 /* Initialize the matirx. */
 
 int initMatrix(const char *fname)
@@ -126,7 +145,7 @@ void initResult(int nsize)
 Parallelization strategy:  Give chunks of the column to each thread, have them
 compute the largest element in thier chunk, then merge the results.*/
 
-void getPivot(int nsize, int currow)
+void getPivot(int nsize, int currow, int task_id)
 {
     int i, pivotrow;
 
@@ -165,7 +184,7 @@ void computeGauss(int nsize)
     //next loop.
     for (i = 0; i < nsize; i++) {
         //add a multithreaded thing here
-	getPivot(nsize,i);
+	getPivot(nsize,i,0);
         //wait until all threads are finished and pick the best pivot of the results
 
         //for each element in the column, multiply by scaling factor, test parallelzing
@@ -183,6 +202,9 @@ void computeGauss(int nsize)
         //for every row, add/subtract row1 such that element 1 of that column equals zero
         //assign chunks of work to threads, experiment with checkerboard etc.        
 	/* Factorize the rest of the matrix. */
+        for (id = 0; id < task_num; id++) {
+            int useless = id;
+        }
         for (j = i + 1; j < nsize; j++) {
             pivotval = matrix[j][i];
             matrix[j][i] = 0.0;
