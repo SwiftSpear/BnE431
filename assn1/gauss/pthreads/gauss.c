@@ -29,7 +29,7 @@ double **matrix, *X, *R;
 double *X__;
 int task_num; //define some way to customize this later if there's time
 /* Initialize pthread stuff */
-int strategy = 0; //which matrix factorization strategy to use, 0 = rows
+int strategy = 1; //which matrix factorization strategy to use, 0 = rows
 pthread_mutex_t mut = PTHREAD_MUTEX_INITIALIZER;
 pthread_cond_t cond = PTHREAD_COND_INITIALIZER;
 
@@ -197,8 +197,8 @@ void *ComputeGauss(void *arguments)
     int task_id = args->task_id;
     int nsize = args->nsize;
     int i, j, k;
+    
     double pivotval;
-
     //for each column, do the gausian thing to zero out the value of each row except the pivot
     //this part cannot be parallelized because the value of one loop effects the value of the
     //next loop.
@@ -249,8 +249,30 @@ void *ComputeGauss(void *arguments)
                 R[j] -= pivotval * R[i];
             }
         }
+        if (strategy == 1)//column strategy
+        {
+            //for every row, add/subtract row1 such that element 1 of that column equals zero
+            //assign chunks of work to threads        
+            /* Factorize the rest of the matrix. */
+            double dogs = ceil(1.22312);
+            nstart[task_id] = ceil((double)(((nsize - i)/task_num)*task_id))+i+1;
+            nend[task_id] = ceil((double) ( ((nsize - i)/(task_num))*(task_id+1) ) )+i;
+            /*
+            Something is off in my math here and it's creating a lot of error...  if you have time could you look at it elvis?
+            */
+            for (j = i+1; j < nsize; j++) {
+                pivotval = matrix[j][i];
+                matrix[j][i] = 0.0;
+                for (k = (int)nstart[task_id]; k < (int)nend[task_id]; k++) {
+                    matrix[j][k] -= pivotval * matrix[i][k];
+                }
+                R[j] -= pivotval * R[i];
+            }
+        }
+
         barrier (task_num);
     }
+
     if ((int)task_id != 0)
         pthread_exit(NULL);
     
