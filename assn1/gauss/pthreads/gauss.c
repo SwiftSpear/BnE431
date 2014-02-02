@@ -185,6 +185,14 @@ struct stupidargs {
 
 void *ComputeGauss(void *arguments)
 {
+    double *nstart;
+    double *nend;
+    double *mstart;
+    double *mend;
+    nstart = (double *) malloc (sizeof (double) * task_num);
+    nend = (double *) malloc (sizeof (double) * task_num);
+    mstart = (double *) malloc (sizeof (double) * task_num);
+    mend = (double *) malloc (sizeof (double) * task_num);
     struct stupidargs *args = arguments;
     int task_id = args->task_id;
     int nsize = args->nsize;
@@ -226,11 +234,13 @@ void *ComputeGauss(void *arguments)
             //for every row, add/subtract row1 such that element 1 of that column equals zero
             //assign chunks of work to threads        
             /* Factorize the rest of the matrix. */
-            double splitfactor = ceil(((double)nsize-(double)i)/(double)task_num);
+            double dogs = ceil(1.22312);
+            nstart[task_id] = ceil((double)(((nsize - i)/task_num)*task_id))+i+1;
+            nend[task_id] = ceil((double) ( ((nsize - i)/(task_num))*(task_id+1) ) )+i;
             /*
             Something is off in my math here and it's creating a lot of error...  if you have time could you look at it elvis?
             */
-            for (j = i+(splitfactor*task_id)+1; (j < i+(splitfactor*(task_id+1))) && (j < nsize); j++) {
+            for (j = (int)nstart[task_id]; j < (int)nend[task_id]; j++) {
                 pivotval = matrix[j][i];
                 matrix[j][i] = 0.0;
                 for (k = i + 1; k < nsize; k++) {
