@@ -27,7 +27,7 @@ double **matrix, *X, *R;
 /* Pre-set solution. */
 
 double *X__;
-int task_num = 8; //define some way to customize this later if there's time
+int task_num; //define some way to customize this later if there's time
 /* Initialize pthread stuff */
 int strategy = 0; //which matrix factorization strategy to use, 0 = rows
 pthread_mutex_t mut = PTHREAD_MUTEX_INITIALIZER;
@@ -272,13 +272,15 @@ void solveGauss(int nsize)
 
 int main(int argc, char *argv[])
 {
+
     int i;
     struct timeval start, finish;
     int nsize = 0;
     double error;
+    task_num = (int)(argv[2][0] - '0');
     
-    if (argc != 2) {
-	fprintf(stderr, "usage: %s <matrixfile>\n", argv[0]);
+    if (argc != 3) {
+	fprintf(stderr, "usage: %s <matrixfile> <# of threads>\n", argv[0]);
 	exit(-1);
     }
 
