@@ -35,10 +35,14 @@ namespace ppp {
       Task* task = queue.dequeue();
 
       // ASSIGNMENT: add task stealing
-
       if (task != NULL) {
         task->execute(); // overloaded method
         task->post_execute(); // cleanup, method of base class
+      }
+      else{
+        PPP_DEBUG_MSG("Stealing ");
+        queue.steal();
+        return;
       }
     }
   }
