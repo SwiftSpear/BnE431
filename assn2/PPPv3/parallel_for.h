@@ -40,7 +40,7 @@ namespace ppp {
         ppp::TaskGroup tg;
         int64_t tempend;
         PPP_DEBUG_MSG("Spliting work into " + to_string(ceil(double(m_end - m_start)/double(m_grainsize))) + " threads");
-        for (int64_t counter = m_start; counter <= m_end; counter = counter + m_grainsize) {
+        for (int64_t counter = m_start; (counter+m_grainsize-1) <= m_end; counter = counter + m_grainsize) {
           tempend = counter + m_grainsize - 1;
           if (tempend > m_end) {
             tempend = m_end;
