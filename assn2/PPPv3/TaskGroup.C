@@ -33,6 +33,8 @@ namespace ppp {
        
       // Dequeue from local queue
       Task* task = queue.dequeue();
+      Task* x;
+      TaskGroup tg;
 
       // ASSIGNMENT: add task stealing
       if (task != NULL) {
@@ -41,7 +43,9 @@ namespace ppp {
       }
       else{
         PPP_DEBUG_MSG("Stealing ");
-        queue.steal();
+        
+        x = queue.steal();
+        //tg.spawn(x);
         return;
       }
     }
