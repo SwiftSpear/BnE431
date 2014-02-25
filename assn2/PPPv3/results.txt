@@ -1,0 +1,220 @@
+TEST DRIVER-COMPUTE 5000000 PARTICLES, 2 THREADS, 2 TRIALS
+ 
+GRAIN SIZE: 5000000
+trial: 1, user: bcribb, host: <unknown>, threads: 2, particles: 5000000, grainsize: 5000000, sort_seconds: 0.776417, compute_seconds: 10.0482
+trial: 2, user: bcribb, host: <unknown>, threads: 2, particles: 5000000, grainsize: 5000000, sort_seconds: 0.774128, compute_seconds: 10.047
+average:  user: bcribb, host: <unknown>, threads: 2, particles: 5000000, grainsize: 5000000, sort_seconds: 0.775273, compute_seconds: 10.0476
+ 
+GRAIN SIZE: 2500000
+trial: 1, user: bcribb, host: <unknown>, threads: 2, particles: 5000000, grainsize: 2500000, sort_seconds: 0.763163, compute_seconds: 11.7979
+trial: 2, user: bcribb, host: <unknown>, threads: 2, particles: 5000000, grainsize: 2500000, sort_seconds: 0.772389, compute_seconds: 11.8949
+average:  user: bcribb, host: <unknown>, threads: 2, particles: 5000000, grainsize: 2500000, sort_seconds: 0.767776, compute_seconds: 11.8464
+ 
+GRAIN SIZE: 1500000
+ERROR: particle 4686112 had value `0` not the expected value `1213526`
+ERROR: particle 4915388 had value `0` not the expected value `1494123`
+ERROR: particle 4731970 had value `0` not the expected value `1193072`
+ERROR: particle 4947272 had value `0` not the expected value `739937`
+ERROR: particle 4913456 had value `0` not the expected value `943235`
+ERROR: particle 4716941 had value `0` not the expected value `1473987`
+ERROR: particle 4639594 had value `0` not the expected value `2786891`
+ERROR: particle 4671794 had value `0` not the expected value `3894352`
+ERROR: particle 4629274 had value `0` not the expected value `2079028`
+ERROR: particle 4550696 had value `0` not the expected value `2828364`
+ERROR: particle 4992223 had value `0` not the expected value `226914`
+trial: 1, user: bcribb, host: <unknown>, threads: 2, particles: 5000000, grainsize: 1500000, sort_seconds: 0.775589, compute_seconds: 11.2749
+ERROR: particle 4919720 had value `0` not the expected value `517798`
+ERROR: particle 4623046 had value `0` not the expected value `4243081`
+ERROR: particle 4582426 had value `0` not the expected value `3009635`
+trial: 2, user: bcribb, host: <unknown>, threads: 2, particles: 5000000, grainsize: 1500000, sort_seconds: 0.778931, compute_seconds: 11.4093
+average:  user: bcribb, host: <unknown>, threads: 2, particles: 5000000, grainsize: 1500000, sort_seconds: 0.77726, compute_seconds: 11.3421
+ 
+GRAIN SIZE: 1000000
+trial: 1, user: bcribb, host: <unknown>, threads: 2, particles: 5000000, grainsize: 1000000, sort_seconds: 0.774107, compute_seconds: 11.8612
+trial: 2, user: bcribb, host: <unknown>, threads: 2, particles: 5000000, grainsize: 1000000, sort_seconds: 0.776947, compute_seconds: 11.9134
+average:  user: bcribb, host: <unknown>, threads: 2, particles: 5000000, grainsize: 1000000, sort_seconds: 0.775527, compute_seconds: 11.8873
+ 
+GRAIN SIZE: 500000
+trial: 1, user: bcribb, host: <unknown>, threads: 2, particles: 5000000, grainsize: 500000, sort_seconds: 0.772942, compute_seconds: 11.8768
+trial: 2, user: bcribb, host: <unknown>, threads: 2, particles: 5000000, grainsize: 500000, sort_seconds: 0.776809, compute_seconds: 11.9491
+average:  user: bcribb, host: <unknown>, threads: 2, particles: 5000000, grainsize: 500000, sort_seconds: 0.774875, compute_seconds: 11.913
+ 
+GRAIN SIZE: 100000
+trial: 1, user: bcribb, host: <unknown>, threads: 2, particles: 5000000, grainsize: 100000, sort_seconds: 0.775348, compute_seconds: 11.9199
+trial: 2, user: bcribb, host: <unknown>, threads: 2, particles: 5000000, grainsize: 100000, sort_seconds: 0.778632, compute_seconds: 11.9141
+average:  user: bcribb, host: <unknown>, threads: 2, particles: 5000000, grainsize: 100000, sort_seconds: 0.77699, compute_seconds: 11.917
+ 
+GRAIN SIZE: 50000
+trial: 1, user: bcribb, host: <unknown>, threads: 2, particles: 5000000, grainsize: 50000, sort_seconds: 0.768592, compute_seconds: 11.8397
+trial: 2, user: bcribb, host: <unknown>, threads: 2, particles: 5000000, grainsize: 50000, sort_seconds: 0.763554, compute_seconds: 11.907
+average:  user: bcribb, host: <unknown>, threads: 2, particles: 5000000, grainsize: 50000, sort_seconds: 0.766073, compute_seconds: 11.8733
+ 
+GRAIN SIZE: 10000
+trial: 1, user: bcribb, host: <unknown>, threads: 2, particles: 5000000, grainsize: 10000, sort_seconds: 0.772476, compute_seconds: 11.8791
+trial: 2, user: bcribb, host: <unknown>, threads: 2, particles: 5000000, grainsize: 10000, sort_seconds: 0.779423, compute_seconds: 11.8872
+average:  user: bcribb, host: <unknown>, threads: 2, particles: 5000000, grainsize: 10000, sort_seconds: 0.775949, compute_seconds: 11.8832
+ 
+GRAIN SIZE: 5000
+trial: 1, user: bcribb, host: <unknown>, threads: 2, particles: 5000000, grainsize: 5000, sort_seconds: 0.774668, compute_seconds: 11.8055
+trial: 2, user: bcribb, host: <unknown>, threads: 2, particles: 5000000, grainsize: 5000, sort_seconds: 0.76567, compute_seconds: 11.9507
+average:  user: bcribb, host: <unknown>, threads: 2, particles: 5000000, grainsize: 5000, sort_seconds: 0.770169, compute_seconds: 11.8781
+ 
+GRAIN SIZE: 1000
+trial: 1, user: bcribb, host: <unknown>, threads: 2, particles: 5000000, grainsize: 1000, sort_seconds: 0.75014, compute_seconds: 11.8466
+trial: 2, user: bcribb, host: <unknown>, threads: 2, particles: 5000000, grainsize: 1000, sort_seconds: 0.777811, compute_seconds: 11.8993
+average:  user: bcribb, host: <unknown>, threads: 2, particles: 5000000, grainsize: 1000, sort_seconds: 0.763975, compute_seconds: 11.8729
+ 
+GRAIN SIZE: 500
+trial: 1, user: bcribb, host: <unknown>, threads: 2, particles: 5000000, grainsize: 500, sort_seconds: 0.77552, compute_seconds: 11.862
+trial: 2, user: bcribb, host: <unknown>, threads: 2, particles: 5000000, grainsize: 500, sort_seconds: 0.777259, compute_seconds: 11.8429
+average:  user: bcribb, host: <unknown>, threads: 2, particles: 5000000, grainsize: 500, sort_seconds: 0.776389, compute_seconds: 11.8525
+ 
+GRAIN SIZE: 300
+trial: 1, user: bcribb, host: <unknown>, threads: 2, particles: 5000000, grainsize: 300, sort_seconds: 0.771322, compute_seconds: 11.7745
+trial: 2, user: bcribb, host: <unknown>, threads: 2, particles: 5000000, grainsize: 300, sort_seconds: 0.776241, compute_seconds: 11.8721
+average:  user: bcribb, host: <unknown>, threads: 2, particles: 5000000, grainsize: 300, sort_seconds: 0.773781, compute_seconds: 11.8233
+ 
+GRAIN SIZE: 50
+ERROR: particle 3150349 had value `0` not the expected value `4701808`
+ERROR: particle 2961199 had value `0` not the expected value `3791045`
+trial: 1, user: bcribb, host: <unknown>, threads: 2, particles: 5000000, grainsize: 50, sort_seconds: 0.774132, compute_seconds: 11.7258
+ERROR: particle 4297099 had value `0` not the expected value `5869559`
+ERROR: particle 1639449 had value `0` not the expected value `2629363`
+trial: 2, user: bcribb, host: <unknown>, threads: 2, particles: 5000000, grainsize: 50, sort_seconds: 0.779366, compute_seconds: 11.7233
+average:  user: bcribb, host: <unknown>, threads: 2, particles: 5000000, grainsize: 50, sort_seconds: 0.776749, compute_seconds: 11.7246
+ 
+GRAIN SIZE: 10
+ERROR: particle 1892939 had value `0` not the expected value `7193865`
+ERROR: particle 3407309 had value `0` not the expected value `6146882`
+ERROR: particle 3150349 had value `0` not the expected value `4701808`
+ERROR: particle 2924369 had value `0` not the expected value `8739459`
+ERROR: particle 2839029 had value `0` not the expected value `6224435`
+ERROR: particle 2961199 had value `0` not the expected value `3791045`
+trial: 1, user: bcribb, host: <unknown>, threads: 2, particles: 5000000, grainsize: 10, sort_seconds: 0.776318, compute_seconds: 10.8055
+ERROR: particle 2902289 had value `0` not the expected value `9517488`
+ERROR: particle 3227509 had value `0` not the expected value `3920392`
+ERROR: particle 4297099 had value `0` not the expected value `5869559`
+ERROR: particle 3233779 had value `0` not the expected value `3417754`
+ERROR: particle 2692009 had value `0` not the expected value `6060436`
+ERROR: particle 3448159 had value `0` not the expected value `5728940`
+ERROR: particle 3004439 had value `0` not the expected value `6064662`
+ERROR: particle 1980059 had value `0` not the expected value `8586733`
+ERROR: particle 2376619 had value `0` not the expected value `4660881`
+ERROR: particle 1639449 had value `0` not the expected value `2629363`
+trial: 2, user: bcribb, host: <unknown>, threads: 2, particles: 5000000, grainsize: 10, sort_seconds: 0.778517, compute_seconds: 10.9025
+average:  user: bcribb, host: <unknown>, threads: 2, particles: 5000000, grainsize: 10, sort_seconds: 0.777418, compute_seconds: 10.854
+ 
+GRAIN SIZE: 5
+ERROR: particle 1892939 had value `0` not the expected value `7193865`
+ERROR: particle 260534 had value `0` not the expected value `1983964`
+ERROR: particle 267214 had value `0` not the expected value `2149107`
+ERROR: particle 3235094 had value `0` not the expected value `4393130`
+ERROR: particle 3407309 had value `0` not the expected value `6146882`
+ERROR: particle 4639594 had value `0` not the expected value `2786891`
+ERROR: particle 3150349 had value `0` not the expected value `4701808`
+ERROR: particle 2924369 had value `0` not the expected value `8739459`
+ERROR: particle 4671794 had value `0` not the expected value `3894352`
+ERROR: particle 2839029 had value `0` not the expected value `6224435`
+ERROR: particle 4629274 had value `0` not the expected value `2079028`
+ERROR: particle 2961199 had value `0` not the expected value `3791045`
+ERROR: particle 3488084 had value `0` not the expected value `2925744`
+ERROR: particle 330684 had value `0` not the expected value `3021747`
+ERROR: particle 4395334 had value `0` not the expected value `2126593`
+ERROR: particle 710554 had value `0` not the expected value `3253781`
+trial: 1, user: bcribb, host: <unknown>, threads: 2, particles: 5000000, grainsize: 5, sort_seconds: 0.772597, compute_seconds: 9.81339
+ERROR: particle 2902289 had value `0` not the expected value `9517488`
+ERROR: particle 3639334 had value `0` not the expected value `3181562`
+ERROR: particle 1152254 had value `0` not the expected value `4061085`
+ERROR: particle 2900664 had value `0` not the expected value `6903890`
+ERROR: particle 3156504 had value `0` not the expected value `5940328`
+ERROR: particle 2774544 had value `0` not the expected value `3043307`
+ERROR: particle 3227509 had value `0` not the expected value `3920392`
+ERROR: particle 2671124 had value `0` not the expected value `3069881`
+ERROR: particle 4297099 had value `0` not the expected value `5869559`
+ERROR: particle 1503264 had value `0` not the expected value `6362570`
+ERROR: particle 3233779 had value `0` not the expected value `3417754`
+ERROR: particle 2692009 had value `0` not the expected value `6060436`
+ERROR: particle 3448159 had value `0` not the expected value `5728940`
+ERROR: particle 3004439 had value `0` not the expected value `6064662`
+ERROR: particle 100174 had value `0` not the expected value `1488229`
+ERROR: particle 1980059 had value `0` not the expected value `8586733`
+ERROR: particle 2376619 had value `0` not the expected value `4660881`
+ERROR: particle 1639449 had value `0` not the expected value `2629363`
+trial: 2, user: bcribb, host: <unknown>, threads: 2, particles: 5000000, grainsize: 5, sort_seconds: 0.768503, compute_seconds: 9.77578
+average:  user: bcribb, host: <unknown>, threads: 2, particles: 5000000, grainsize: 5, sort_seconds: 0.77055, compute_seconds: 9.79458
+ 
+GRAIN SIZE: 3
+ERROR: particle 1892939 had value `0` not the expected value `7193865`
+ERROR: particle 2080298 had value `0` not the expected value `8383003`
+ERROR: particle 260534 had value `0` not the expected value `1983964`
+ERROR: particle 4915388 had value `0` not the expected value `1494123`
+ERROR: particle 3975683 had value `0` not the expected value `5197395`
+ERROR: particle 4387703 had value `0` not the expected value `2594663`
+ERROR: particle 4947272 had value `0` not the expected value `739937`
+ERROR: particle 4913456 had value `0` not the expected value `943235`
+ERROR: particle 4716941 had value `0` not the expected value `1473987`
+ERROR: particle 1533797 had value `0` not the expected value `3368167`
+ERROR: particle 3574886 had value `0` not the expected value `3310968`
+ERROR: particle 3235094 had value `0` not the expected value `4393130`
+ERROR: particle 3407309 had value `0` not the expected value `6146882`
+ERROR: particle 3569480 had value `0` not the expected value `6319835`
+ERROR: particle 442937 had value `0` not the expected value `1325673`
+ERROR: particle 3433676 had value `0` not the expected value `7991388`
+ERROR: particle 2924369 had value `0` not the expected value `8739459`
+ERROR: particle 4671794 had value `0` not the expected value `3894352`
+ERROR: particle 1164470 had value `0` not the expected value `7230459`
+ERROR: particle 748295 had value `0` not the expected value `1772349`
+ERROR: particle 2983655 had value `0` not the expected value `2648492`
+ERROR: particle 2087303 had value `0` not the expected value `7667373`
+ERROR: particle 4445861 had value `0` not the expected value `4357644`
+ERROR: particle 3168155 had value `0` not the expected value `5855684`
+ERROR: particle 1967102 had value `0` not the expected value `3938426`
+ERROR: particle 3488084 had value `0` not the expected value `2925744`
+ERROR: particle 557486 had value `0` not the expected value `2289845`
+ERROR: particle 2022101 had value `0` not the expected value `4140070`
+ERROR: particle 4550696 had value `0` not the expected value `2828364`
+ERROR: particle 1678922 had value `0` not the expected value `7744252`
+ERROR: particle 1250411 had value `0` not the expected value `8279094`
+ERROR: particle 3832637 had value `0` not the expected value `8015741`
+ERROR: particle 2065466 had value `0` not the expected value `5955306`
+ERROR: particle 1487327 had value `0` not the expected value `3140306`
+ERROR: particle 1503728 had value `0` not the expected value `5052184`
+ERROR: particle 1063406 had value `0` not the expected value `3001281`
+ERROR: particle 2231978 had value `0` not the expected value `9244055`
+ERROR: particle 126320 had value `0` not the expected value `645063`
+ERROR: particle 648962 had value `0` not the expected value `2647981`
+trial: 1, user: bcribb, host: <unknown>, threads: 2, particles: 5000000, grainsize: 3, sort_seconds: 0.76941, compute_seconds: 8.40508
+ERROR: particle 4919720 had value `0` not the expected value `517798`
+ERROR: particle 42500 had value `0` not the expected value `709442`
+ERROR: particle 2902289 had value `0` not the expected value `9517488`
+ERROR: particle 2959970 had value `0` not the expected value `3682944`
+ERROR: particle 4306922 had value `0` not the expected value `2553639`
+ERROR: particle 1152254 had value `0` not the expected value `4061085`
+ERROR: particle 1906586 had value `0` not the expected value `8169318`
+ERROR: particle 2671124 had value `0` not the expected value `3069881`
+ERROR: particle 1016621 had value `0` not the expected value `6216914`
+ERROR: particle 123455 had value `0` not the expected value `764668`
+ERROR: particle 329066 had value `0` not the expected value `1207512`
+ERROR: particle 632561 had value `0` not the expected value `1852095`
+ERROR: particle 29168 had value `0` not the expected value `399415`
+ERROR: particle 745820 had value `0` not the expected value `5910906`
+ERROR: particle 575525 had value `0` not the expected value `3098685`
+ERROR: particle 3764138 had value `0` not the expected value `6741800`
+ERROR: particle 3581501 had value `0` not the expected value `5208841`
+ERROR: particle 3598760 had value `0` not the expected value `8871830`
+ERROR: particle 3004439 had value `0` not the expected value `6064662`
+ERROR: particle 411695 had value `0` not the expected value `2772699`
+ERROR: particle 2304413 had value `0` not the expected value `8872355`
+ERROR: particle 288767 had value `0` not the expected value `1581076`
+ERROR: particle 1371497 had value `0` not the expected value `7291928`
+ERROR: particle 1531517 had value `0` not the expected value `5311941`
+ERROR: particle 1980059 had value `0` not the expected value `8586733`
+ERROR: particle 1358480 had value `0` not the expected value `4947022`
+ERROR: particle 1518836 had value `0` not the expected value `7754519`
+ERROR: particle 3485261 had value `0` not the expected value `7966056`
+ERROR: particle 489296 had value `0` not the expected value `1718963`
+ERROR: particle 2241992 had value `0` not the expected value `4281995`
+ERROR: particle 1750412 had value `0` not the expected value `4497543`
+ERROR: particle 2804852 had value `0` not the expected value `4352941`
+trial: 2, user: bcribb, host: <unknown>, threads: 2, particles: 5000000, grainsize: 3, sort_seconds: 0.778925, compute_seconds: 8.39484
+average:  user: bcribb, host: <unknown>, threads: 2, particles: 5000000, grainsize: 3, sort_seconds: 0.774167, compute_seconds: 8.39996
