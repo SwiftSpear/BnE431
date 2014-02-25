@@ -1,0 +1,35 @@
+#!/bin/bash
+# Script that runs test programs and saves results to a file
+
+grainsize[0]=5000000
+grainsize[1]=2500000
+grainsize[2]=1500000
+grainsize[3]=1000000
+grainsize[4]=500000
+grainsize[5]=100000
+grainsize[6]=50000
+grainsize[7]=10000
+grainsize[8]=5000
+grainsize[9]=1000
+grainsize[10]=500
+grainsize[11]=300
+grainsize[12]=50
+grainsize[13]=10
+grainsize[14]=5
+grainsize[15]=3
+
+particles=5000000
+threads=2
+trials=1
+
+echo "TEST DRIVER-COMPUTE $particles PARTICLES, $threads THREADS, $trials TRIALS" >> results.txt 
+
+c=0
+
+while [ $c -le 15 ]
+do
+    echo " " >> results.txt
+    echo "GRAIN SIZE: ${grainsize[$c]}" >> results.txt
+    ./driver-compute --particles $particles --threads $threads --trials $trials --grainsize ${grainsize[$c]} >> results.txt
+    (( c++ ))
+done
