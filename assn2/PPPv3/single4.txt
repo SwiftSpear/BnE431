@@ -1,0 +1,81 @@
+TEST DRIVER-COMPUTE 5000000 PARTICLES, 1 THREADS, 2 TRIALS
+ 
+GRAIN SIZE: 3
+trial: 1, user: bcribb, host: <unknown>, threads: 1, particles: 5000000, grainsize: 3, sort_seconds: 0.750119, compute_seconds: 8.32706
+trial: 2, user: bcribb, host: <unknown>, threads: 1, particles: 5000000, grainsize: 3, sort_seconds: 0.75561, compute_seconds: 8.37456
+average:  user: bcribb, host: <unknown>, threads: 1, particles: 5000000, grainsize: 3, sort_seconds: 0.752864, compute_seconds: 8.35081
+ 
+GRAIN SIZE: 5
+trial: 1, user: bcribb, host: <unknown>, threads: 1, particles: 5000000, grainsize: 5, sort_seconds: 0.748625, compute_seconds: 9.8282
+trial: 2, user: bcribb, host: <unknown>, threads: 1, particles: 5000000, grainsize: 5, sort_seconds: 0.756116, compute_seconds: 9.82994
+average:  user: bcribb, host: <unknown>, threads: 1, particles: 5000000, grainsize: 5, sort_seconds: 0.75237, compute_seconds: 9.82907
+ 
+GRAIN SIZE: 10
+trial: 1, user: bcribb, host: <unknown>, threads: 1, particles: 5000000, grainsize: 10, sort_seconds: 0.750511, compute_seconds: 10.8094
+trial: 2, user: bcribb, host: <unknown>, threads: 1, particles: 5000000, grainsize: 10, sort_seconds: 0.748433, compute_seconds: 10.855
+average:  user: bcribb, host: <unknown>, threads: 1, particles: 5000000, grainsize: 10, sort_seconds: 0.749472, compute_seconds: 10.8322
+ 
+GRAIN SIZE: 50
+trial: 1, user: bcribb, host: <unknown>, threads: 1, particles: 5000000, grainsize: 50, sort_seconds: 0.722377, compute_seconds: 12.5934
+trial: 2, user: bcribb, host: <unknown>, threads: 1, particles: 5000000, grainsize: 50, sort_seconds: 0.721981, compute_seconds: 12.7182
+average:  user: bcribb, host: <unknown>, threads: 1, particles: 5000000, grainsize: 50, sort_seconds: 0.722179, compute_seconds: 12.6558
+ 
+GRAIN SIZE: 300
+trial: 1, user: bcribb, host: <unknown>, threads: 1, particles: 5000000, grainsize: 300, sort_seconds: 0.715564, compute_seconds: 11.893
+trial: 2, user: bcribb, host: <unknown>, threads: 1, particles: 5000000, grainsize: 300, sort_seconds: 0.755766, compute_seconds: 11.8057
+average:  user: bcribb, host: <unknown>, threads: 1, particles: 5000000, grainsize: 300, sort_seconds: 0.735665, compute_seconds: 11.8494
+ 
+GRAIN SIZE: 500
+trial: 1, user: bcribb, host: <unknown>, threads: 1, particles: 5000000, grainsize: 500, sort_seconds: 0.748478, compute_seconds: 11.9562
+trial: 2, user: bcribb, host: <unknown>, threads: 1, particles: 5000000, grainsize: 500, sort_seconds: 0.755479, compute_seconds: 11.8448
+average:  user: bcribb, host: <unknown>, threads: 1, particles: 5000000, grainsize: 500, sort_seconds: 0.751979, compute_seconds: 11.9005
+ 
+GRAIN SIZE: 1000
+trial: 1, user: bcribb, host: <unknown>, threads: 1, particles: 5000000, grainsize: 1000, sort_seconds: 0.74908, compute_seconds: 11.9098
+trial: 2, user: bcribb, host: <unknown>, threads: 1, particles: 5000000, grainsize: 1000, sort_seconds: 0.756373, compute_seconds: 11.8918
+average:  user: bcribb, host: <unknown>, threads: 1, particles: 5000000, grainsize: 1000, sort_seconds: 0.752726, compute_seconds: 11.9008
+ 
+GRAIN SIZE: 5000
+trial: 1, user: bcribb, host: <unknown>, threads: 1, particles: 5000000, grainsize: 5000, sort_seconds: 0.740158, compute_seconds: 11.9621
+trial: 2, user: bcribb, host: <unknown>, threads: 1, particles: 5000000, grainsize: 5000, sort_seconds: 0.735861, compute_seconds: 11.8748
+average:  user: bcribb, host: <unknown>, threads: 1, particles: 5000000, grainsize: 5000, sort_seconds: 0.738009, compute_seconds: 11.9185
+ 
+GRAIN SIZE: 10000
+trial: 1, user: bcribb, host: <unknown>, threads: 1, particles: 5000000, grainsize: 10000, sort_seconds: 0.724409, compute_seconds: 11.8925
+trial: 2, user: bcribb, host: <unknown>, threads: 1, particles: 5000000, grainsize: 10000, sort_seconds: 0.753144, compute_seconds: 11.9287
+average:  user: bcribb, host: <unknown>, threads: 1, particles: 5000000, grainsize: 10000, sort_seconds: 0.738777, compute_seconds: 11.9106
+ 
+GRAIN SIZE: 50000
+trial: 1, user: bcribb, host: <unknown>, threads: 1, particles: 5000000, grainsize: 50000, sort_seconds: 0.74884, compute_seconds: 11.9097
+trial: 2, user: bcribb, host: <unknown>, threads: 1, particles: 5000000, grainsize: 50000, sort_seconds: 0.756012, compute_seconds: 11.9288
+average:  user: bcribb, host: <unknown>, threads: 1, particles: 5000000, grainsize: 50000, sort_seconds: 0.752426, compute_seconds: 11.9193
+ 
+GRAIN SIZE: 100000
+trial: 1, user: bcribb, host: <unknown>, threads: 1, particles: 5000000, grainsize: 100000, sort_seconds: 0.750254, compute_seconds: 11.9008
+trial: 2, user: bcribb, host: <unknown>, threads: 1, particles: 5000000, grainsize: 100000, sort_seconds: 0.754793, compute_seconds: 11.9332
+average:  user: bcribb, host: <unknown>, threads: 1, particles: 5000000, grainsize: 100000, sort_seconds: 0.752524, compute_seconds: 11.917
+ 
+GRAIN SIZE: 500000
+trial: 1, user: bcribb, host: <unknown>, threads: 1, particles: 5000000, grainsize: 500000, sort_seconds: 0.749903, compute_seconds: 11.9405
+trial: 2, user: bcribb, host: <unknown>, threads: 1, particles: 5000000, grainsize: 500000, sort_seconds: 0.755999, compute_seconds: 11.9776
+average:  user: bcribb, host: <unknown>, threads: 1, particles: 5000000, grainsize: 500000, sort_seconds: 0.752951, compute_seconds: 11.9591
+ 
+GRAIN SIZE: 1000000
+trial: 1, user: bcribb, host: <unknown>, threads: 1, particles: 5000000, grainsize: 1000000, sort_seconds: 0.734416, compute_seconds: 11.8656
+trial: 2, user: bcribb, host: <unknown>, threads: 1, particles: 5000000, grainsize: 1000000, sort_seconds: 0.730248, compute_seconds: 11.9126
+average:  user: bcribb, host: <unknown>, threads: 1, particles: 5000000, grainsize: 1000000, sort_seconds: 0.732332, compute_seconds: 11.8891
+ 
+GRAIN SIZE: 1500000
+trial: 1, user: bcribb, host: <unknown>, threads: 1, particles: 5000000, grainsize: 1500000, sort_seconds: 0.750266, compute_seconds: 11.2575
+trial: 2, user: bcribb, host: <unknown>, threads: 1, particles: 5000000, grainsize: 1500000, sort_seconds: 0.757072, compute_seconds: 11.3353
+average:  user: bcribb, host: <unknown>, threads: 1, particles: 5000000, grainsize: 1500000, sort_seconds: 0.753669, compute_seconds: 11.2964
+ 
+GRAIN SIZE: 2500000
+trial: 1, user: bcribb, host: <unknown>, threads: 1, particles: 5000000, grainsize: 2500000, sort_seconds: 0.750127, compute_seconds: 11.8156
+trial: 2, user: bcribb, host: <unknown>, threads: 1, particles: 5000000, grainsize: 2500000, sort_seconds: 0.751158, compute_seconds: 11.9064
+average:  user: bcribb, host: <unknown>, threads: 1, particles: 5000000, grainsize: 2500000, sort_seconds: 0.750642, compute_seconds: 11.861
+ 
+GRAIN SIZE: 5000000
+trial: 1, user: bcribb, host: <unknown>, threads: 1, particles: 5000000, grainsize: 5000000, sort_seconds: 0.74854, compute_seconds: 10.0424
+trial: 2, user: bcribb, host: <unknown>, threads: 1, particles: 5000000, grainsize: 5000000, sort_seconds: 0.75481, compute_seconds: 10.0455
+average:  user: bcribb, host: <unknown>, threads: 1, particles: 5000000, grainsize: 5000000, sort_seconds: 0.751675, compute_seconds: 10.0439
