@@ -1,0 +1,241 @@
+TEST DRIVER-SORT 40000000 PARTICLES, 4 THREADS, 5 TRIALS
+ 
+GRAIN SIZE: 90000000
+trial: 1, user: eia4, host: <unknown>, threads: 4, particles: 40000000, grainsize: 90000000, seconds: 3.93969
+trial: 2, user: eia4, host: <unknown>, threads: 4, particles: 40000000, grainsize: 90000000, seconds: 3.95783
+trial: 3, user: eia4, host: <unknown>, threads: 4, particles: 40000000, grainsize: 90000000, seconds: 3.95997
+trial: 4, user: eia4, host: <unknown>, threads: 4, particles: 40000000, grainsize: 90000000, seconds: 3.9322
+trial: 5, user: eia4, host: <unknown>, threads: 4, particles: 40000000, grainsize: 90000000, seconds: 3.98164
+average:  user: eia4, host: <unknown>, threads: 4, particles: 40000000, grainsize: 90000000, seconds: 3.95427
+ 
+GRAIN SIZE: 80000000
+trial: 1, user: eia4, host: <unknown>, threads: 4, particles: 40000000, grainsize: 80000000, seconds: 3.94154
+trial: 2, user: eia4, host: <unknown>, threads: 4, particles: 40000000, grainsize: 80000000, seconds: 3.96004
+trial: 3, user: eia4, host: <unknown>, threads: 4, particles: 40000000, grainsize: 80000000, seconds: 3.96275
+trial: 4, user: eia4, host: <unknown>, threads: 4, particles: 40000000, grainsize: 80000000, seconds: 3.92786
+trial: 5, user: eia4, host: <unknown>, threads: 4, particles: 40000000, grainsize: 80000000, seconds: 3.94262
+average:  user: eia4, host: <unknown>, threads: 4, particles: 40000000, grainsize: 80000000, seconds: 3.94696
+ 
+GRAIN SIZE: 70000000
+trial: 1, user: eia4, host: <unknown>, threads: 4, particles: 40000000, grainsize: 70000000, seconds: 3.93813
+trial: 2, user: eia4, host: <unknown>, threads: 4, particles: 40000000, grainsize: 70000000, seconds: 3.95663
+trial: 3, user: eia4, host: <unknown>, threads: 4, particles: 40000000, grainsize: 70000000, seconds: 3.95903
+trial: 4, user: eia4, host: <unknown>, threads: 4, particles: 40000000, grainsize: 70000000, seconds: 3.93073
+trial: 5, user: eia4, host: <unknown>, threads: 4, particles: 40000000, grainsize: 70000000, seconds: 3.98031
+average:  user: eia4, host: <unknown>, threads: 4, particles: 40000000, grainsize: 70000000, seconds: 3.95296
+ 
+GRAIN SIZE: 60000000
+trial: 1, user: eia4, host: <unknown>, threads: 4, particles: 40000000, grainsize: 60000000, seconds: 3.88188
+trial: 2, user: eia4, host: <unknown>, threads: 4, particles: 40000000, grainsize: 60000000, seconds: 3.94045
+trial: 3, user: eia4, host: <unknown>, threads: 4, particles: 40000000, grainsize: 60000000, seconds: 3.98138
+trial: 4, user: eia4, host: <unknown>, threads: 4, particles: 40000000, grainsize: 60000000, seconds: 3.93781
+trial: 5, user: eia4, host: <unknown>, threads: 4, particles: 40000000, grainsize: 60000000, seconds: 3.98398
+average:  user: eia4, host: <unknown>, threads: 4, particles: 40000000, grainsize: 60000000, seconds: 3.9451
+ 
+GRAIN SIZE: 50000000
+trial: 1, user: eia4, host: <unknown>, threads: 4, particles: 40000000, grainsize: 50000000, seconds: 3.93877
+trial: 2, user: eia4, host: <unknown>, threads: 4, particles: 40000000, grainsize: 50000000, seconds: 3.95755
+trial: 3, user: eia4, host: <unknown>, threads: 4, particles: 40000000, grainsize: 50000000, seconds: 3.95907
+trial: 4, user: eia4, host: <unknown>, threads: 4, particles: 40000000, grainsize: 50000000, seconds: 3.93135
+trial: 5, user: eia4, host: <unknown>, threads: 4, particles: 40000000, grainsize: 50000000, seconds: 3.98035
+average:  user: eia4, host: <unknown>, threads: 4, particles: 40000000, grainsize: 50000000, seconds: 3.95342
+ 
+GRAIN SIZE: 45000000
+trial: 1, user: eia4, host: <unknown>, threads: 4, particles: 40000000, grainsize: 45000000, seconds: 3.94114
+trial: 2, user: eia4, host: <unknown>, threads: 4, particles: 40000000, grainsize: 45000000, seconds: 3.9596
+trial: 3, user: eia4, host: <unknown>, threads: 4, particles: 40000000, grainsize: 45000000, seconds: 3.96167
+trial: 4, user: eia4, host: <unknown>, threads: 4, particles: 40000000, grainsize: 45000000, seconds: 3.93605
+trial: 5, user: eia4, host: <unknown>, threads: 4, particles: 40000000, grainsize: 45000000, seconds: 3.97535
+average:  user: eia4, host: <unknown>, threads: 4, particles: 40000000, grainsize: 45000000, seconds: 3.95476
+ 
+GRAIN SIZE: 40000000
+trial: 1, user: eia4, host: <unknown>, threads: 4, particles: 40000000, grainsize: 40000000, seconds: 4.00212
+trial: 2, user: eia4, host: <unknown>, threads: 4, particles: 40000000, grainsize: 40000000, seconds: 4.03275
+trial: 3, user: eia4, host: <unknown>, threads: 4, particles: 40000000, grainsize: 40000000, seconds: 3.94497
+trial: 4, user: eia4, host: <unknown>, threads: 4, particles: 40000000, grainsize: 40000000, seconds: 3.95354
+trial: 5, user: eia4, host: <unknown>, threads: 4, particles: 40000000, grainsize: 40000000, seconds: 3.91042
+average:  user: eia4, host: <unknown>, threads: 4, particles: 40000000, grainsize: 40000000, seconds: 3.96876
+ 
+GRAIN SIZE: 35000000
+trial: 1, user: eia4, host: <unknown>, threads: 4, particles: 40000000, grainsize: 35000000, seconds: 3.98198
+trial: 2, user: eia4, host: <unknown>, threads: 4, particles: 40000000, grainsize: 35000000, seconds: 4.00248
+trial: 3, user: eia4, host: <unknown>, threads: 4, particles: 40000000, grainsize: 35000000, seconds: 3.92855
+trial: 4, user: eia4, host: <unknown>, threads: 4, particles: 40000000, grainsize: 35000000, seconds: 4.07903
+trial: 5, user: eia4, host: <unknown>, threads: 4, particles: 40000000, grainsize: 35000000, seconds: 3.98033
+average:  user: eia4, host: <unknown>, threads: 4, particles: 40000000, grainsize: 35000000, seconds: 3.99447
+ 
+GRAIN SIZE: 30000000
+trial: 1, user: eia4, host: <unknown>, threads: 4, particles: 40000000, grainsize: 30000000, seconds: 3.94244
+trial: 2, user: eia4, host: <unknown>, threads: 4, particles: 40000000, grainsize: 30000000, seconds: 3.99367
+trial: 3, user: eia4, host: <unknown>, threads: 4, particles: 40000000, grainsize: 30000000, seconds: 3.92442
+trial: 4, user: eia4, host: <unknown>, threads: 4, particles: 40000000, grainsize: 30000000, seconds: 3.98794
+trial: 5, user: eia4, host: <unknown>, threads: 4, particles: 40000000, grainsize: 30000000, seconds: 3.89096
+average:  user: eia4, host: <unknown>, threads: 4, particles: 40000000, grainsize: 30000000, seconds: 3.94788
+ 
+GRAIN SIZE: 25000000
+trial: 1, user: eia4, host: <unknown>, threads: 4, particles: 40000000, grainsize: 25000000, seconds: 4.0203
+trial: 2, user: eia4, host: <unknown>, threads: 4, particles: 40000000, grainsize: 25000000, seconds: 4.0738
+trial: 3, user: eia4, host: <unknown>, threads: 4, particles: 40000000, grainsize: 25000000, seconds: 3.98446
+trial: 4, user: eia4, host: <unknown>, threads: 4, particles: 40000000, grainsize: 25000000, seconds: 4.07392
+trial: 5, user: eia4, host: <unknown>, threads: 4, particles: 40000000, grainsize: 25000000, seconds: 3.9865
+average:  user: eia4, host: <unknown>, threads: 4, particles: 40000000, grainsize: 25000000, seconds: 4.0278
+ 
+GRAIN SIZE: 20000000
+trial: 1, user: eia4, host: <unknown>, threads: 4, particles: 40000000, grainsize: 20000000, seconds: 3.93669
+trial: 2, user: eia4, host: <unknown>, threads: 4, particles: 40000000, grainsize: 20000000, seconds: 4.03036
+trial: 3, user: eia4, host: <unknown>, threads: 4, particles: 40000000, grainsize: 20000000, seconds: 4.00314
+trial: 4, user: eia4, host: <unknown>, threads: 4, particles: 40000000, grainsize: 20000000, seconds: 4.09959
+trial: 5, user: eia4, host: <unknown>, threads: 4, particles: 40000000, grainsize: 20000000, seconds: 4.03378
+average:  user: eia4, host: <unknown>, threads: 4, particles: 40000000, grainsize: 20000000, seconds: 4.02071
+ 
+GRAIN SIZE: 15000000
+trial: 1, user: eia4, host: <unknown>, threads: 4, particles: 40000000, grainsize: 15000000, seconds: 4.009
+trial: 2, user: eia4, host: <unknown>, threads: 4, particles: 40000000, grainsize: 15000000, seconds: 4.01871
+trial: 3, user: eia4, host: <unknown>, threads: 4, particles: 40000000, grainsize: 15000000, seconds: 4.0539
+trial: 4, user: eia4, host: <unknown>, threads: 4, particles: 40000000, grainsize: 15000000, seconds: 4.08743
+trial: 5, user: eia4, host: <unknown>, threads: 4, particles: 40000000, grainsize: 15000000, seconds: 4.0252
+average:  user: eia4, host: <unknown>, threads: 4, particles: 40000000, grainsize: 15000000, seconds: 4.03885
+ 
+GRAIN SIZE: 10000000
+trial: 1, user: eia4, host: <unknown>, threads: 4, particles: 40000000, grainsize: 10000000, seconds: 4.01195
+trial: 2, user: eia4, host: <unknown>, threads: 4, particles: 40000000, grainsize: 10000000, seconds: 4.02687
+trial: 3, user: eia4, host: <unknown>, threads: 4, particles: 40000000, grainsize: 10000000, seconds: 4.07622
+trial: 4, user: eia4, host: <unknown>, threads: 4, particles: 40000000, grainsize: 10000000, seconds: 4.09907
+trial: 5, user: eia4, host: <unknown>, threads: 4, particles: 40000000, grainsize: 10000000, seconds: 3.99935
+average:  user: eia4, host: <unknown>, threads: 4, particles: 40000000, grainsize: 10000000, seconds: 4.04269
+ 
+GRAIN SIZE: 5000000
+trial: 1, user: eia4, host: <unknown>, threads: 4, particles: 40000000, grainsize: 5000000, seconds: 4.13784
+trial: 2, user: eia4, host: <unknown>, threads: 4, particles: 40000000, grainsize: 5000000, seconds: 4.1438
+trial: 3, user: eia4, host: <unknown>, threads: 4, particles: 40000000, grainsize: 5000000, seconds: 4.21248
+trial: 4, user: eia4, host: <unknown>, threads: 4, particles: 40000000, grainsize: 5000000, seconds: 4.25878
+trial: 5, user: eia4, host: <unknown>, threads: 4, particles: 40000000, grainsize: 5000000, seconds: 4.12876
+average:  user: eia4, host: <unknown>, threads: 4, particles: 40000000, grainsize: 5000000, seconds: 4.17633
+ 
+GRAIN SIZE: 2500000
+trial: 1, user: eia4, host: <unknown>, threads: 4, particles: 40000000, grainsize: 2500000, seconds: 4.11277
+trial: 2, user: eia4, host: <unknown>, threads: 4, particles: 40000000, grainsize: 2500000, seconds: 4.095
+trial: 3, user: eia4, host: <unknown>, threads: 4, particles: 40000000, grainsize: 2500000, seconds: 4.14307
+trial: 4, user: eia4, host: <unknown>, threads: 4, particles: 40000000, grainsize: 2500000, seconds: 4.22597
+trial: 5, user: eia4, host: <unknown>, threads: 4, particles: 40000000, grainsize: 2500000, seconds: 4.07149
+average:  user: eia4, host: <unknown>, threads: 4, particles: 40000000, grainsize: 2500000, seconds: 4.12966
+ 
+GRAIN SIZE: 1500000
+trial: 1, user: eia4, host: <unknown>, threads: 4, particles: 40000000, grainsize: 1500000, seconds: 4.22281
+trial: 2, user: eia4, host: <unknown>, threads: 4, particles: 40000000, grainsize: 1500000, seconds: 4.20137
+trial: 3, user: eia4, host: <unknown>, threads: 4, particles: 40000000, grainsize: 1500000, seconds: 4.22484
+trial: 4, user: eia4, host: <unknown>, threads: 4, particles: 40000000, grainsize: 1500000, seconds: 4.28668
+trial: 5, user: eia4, host: <unknown>, threads: 4, particles: 40000000, grainsize: 1500000, seconds: 4.12938
+average:  user: eia4, host: <unknown>, threads: 4, particles: 40000000, grainsize: 1500000, seconds: 4.21301
+ 
+GRAIN SIZE: 1000000
+trial: 1, user: eia4, host: <unknown>, threads: 4, particles: 40000000, grainsize: 1000000, seconds: 4.17491
+trial: 2, user: eia4, host: <unknown>, threads: 4, particles: 40000000, grainsize: 1000000, seconds: 4.14132
+trial: 3, user: eia4, host: <unknown>, threads: 4, particles: 40000000, grainsize: 1000000, seconds: 4.17479
+trial: 4, user: eia4, host: <unknown>, threads: 4, particles: 40000000, grainsize: 1000000, seconds: 4.2559
+trial: 5, user: eia4, host: <unknown>, threads: 4, particles: 40000000, grainsize: 1000000, seconds: 4.11809
+average:  user: eia4, host: <unknown>, threads: 4, particles: 40000000, grainsize: 1000000, seconds: 4.173
+ 
+GRAIN SIZE: 500000
+trial: 1, user: eia4, host: <unknown>, threads: 4, particles: 40000000, grainsize: 500000, seconds: 4.24612
+trial: 2, user: eia4, host: <unknown>, threads: 4, particles: 40000000, grainsize: 500000, seconds: 4.19238
+trial: 3, user: eia4, host: <unknown>, threads: 4, particles: 40000000, grainsize: 500000, seconds: 4.2213
+trial: 4, user: eia4, host: <unknown>, threads: 4, particles: 40000000, grainsize: 500000, seconds: 4.28294
+trial: 5, user: eia4, host: <unknown>, threads: 4, particles: 40000000, grainsize: 500000, seconds: 4.154
+average:  user: eia4, host: <unknown>, threads: 4, particles: 40000000, grainsize: 500000, seconds: 4.21935
+ 
+GRAIN SIZE: 100000
+trial: 1, user: eia4, host: <unknown>, threads: 4, particles: 40000000, grainsize: 100000, seconds: 4.30573
+trial: 2, user: eia4, host: <unknown>, threads: 4, particles: 40000000, grainsize: 100000, seconds: 4.25612
+trial: 3, user: eia4, host: <unknown>, threads: 4, particles: 40000000, grainsize: 100000, seconds: 4.29317
+trial: 4, user: eia4, host: <unknown>, threads: 4, particles: 40000000, grainsize: 100000, seconds: 4.35554
+trial: 5, user: eia4, host: <unknown>, threads: 4, particles: 40000000, grainsize: 100000, seconds: 4.23231
+average:  user: eia4, host: <unknown>, threads: 4, particles: 40000000, grainsize: 100000, seconds: 4.28857
+ 
+GRAIN SIZE: 50000
+trial: 1, user: eia4, host: <unknown>, threads: 4, particles: 40000000, grainsize: 50000, seconds: 4.35501
+trial: 2, user: eia4, host: <unknown>, threads: 4, particles: 40000000, grainsize: 50000, seconds: 4.30271
+trial: 3, user: eia4, host: <unknown>, threads: 4, particles: 40000000, grainsize: 50000, seconds: 4.35022
+trial: 4, user: eia4, host: <unknown>, threads: 4, particles: 40000000, grainsize: 50000, seconds: 4.4108
+trial: 5, user: eia4, host: <unknown>, threads: 4, particles: 40000000, grainsize: 50000, seconds: 4.29273
+average:  user: eia4, host: <unknown>, threads: 4, particles: 40000000, grainsize: 50000, seconds: 4.34229
+ 
+GRAIN SIZE: 10000
+trial: 1, user: eia4, host: <unknown>, threads: 4, particles: 40000000, grainsize: 10000, seconds: 4.43538
+trial: 2, user: eia4, host: <unknown>, threads: 4, particles: 40000000, grainsize: 10000, seconds: 4.38765
+trial: 3, user: eia4, host: <unknown>, threads: 4, particles: 40000000, grainsize: 10000, seconds: 4.44405
+trial: 4, user: eia4, host: <unknown>, threads: 4, particles: 40000000, grainsize: 10000, seconds: 4.53071
+trial: 5, user: eia4, host: <unknown>, threads: 4, particles: 40000000, grainsize: 10000, seconds: 4.4003
+average:  user: eia4, host: <unknown>, threads: 4, particles: 40000000, grainsize: 10000, seconds: 4.43962
+ 
+GRAIN SIZE: 5000
+trial: 1, user: eia4, host: <unknown>, threads: 4, particles: 40000000, grainsize: 5000, seconds: 4.57306
+trial: 2, user: eia4, host: <unknown>, threads: 4, particles: 40000000, grainsize: 5000, seconds: 4.55292
+trial: 3, user: eia4, host: <unknown>, threads: 4, particles: 40000000, grainsize: 5000, seconds: 4.60065
+trial: 4, user: eia4, host: <unknown>, threads: 4, particles: 40000000, grainsize: 5000, seconds: 4.6727
+trial: 5, user: eia4, host: <unknown>, threads: 4, particles: 40000000, grainsize: 5000, seconds: 4.53101
+average:  user: eia4, host: <unknown>, threads: 4, particles: 40000000, grainsize: 5000, seconds: 4.58607
+ 
+GRAIN SIZE: 1000
+trial: 1, user: eia4, host: <unknown>, threads: 4, particles: 40000000, grainsize: 1000, seconds: 4.66292
+trial: 2, user: eia4, host: <unknown>, threads: 4, particles: 40000000, grainsize: 1000, seconds: 4.61948
+trial: 3, user: eia4, host: <unknown>, threads: 4, particles: 40000000, grainsize: 1000, seconds: 4.66026
+trial: 4, user: eia4, host: <unknown>, threads: 4, particles: 40000000, grainsize: 1000, seconds: 4.74101
+trial: 5, user: eia4, host: <unknown>, threads: 4, particles: 40000000, grainsize: 1000, seconds: 4.61363
+average:  user: eia4, host: <unknown>, threads: 4, particles: 40000000, grainsize: 1000, seconds: 4.65946
+ 
+GRAIN SIZE: 500
+trial: 1, user: eia4, host: <unknown>, threads: 4, particles: 40000000, grainsize: 500, seconds: 4.86603
+trial: 2, user: eia4, host: <unknown>, threads: 4, particles: 40000000, grainsize: 500, seconds: 4.81793
+trial: 3, user: eia4, host: <unknown>, threads: 4, particles: 40000000, grainsize: 500, seconds: 4.84841
+trial: 4, user: eia4, host: <unknown>, threads: 4, particles: 40000000, grainsize: 500, seconds: 4.93008
+trial: 5, user: eia4, host: <unknown>, threads: 4, particles: 40000000, grainsize: 500, seconds: 4.7947
+average:  user: eia4, host: <unknown>, threads: 4, particles: 40000000, grainsize: 500, seconds: 4.85143
+ 
+GRAIN SIZE: 300
+trial: 1, user: eia4, host: <unknown>, threads: 4, particles: 40000000, grainsize: 300, seconds: 4.91168
+trial: 2, user: eia4, host: <unknown>, threads: 4, particles: 40000000, grainsize: 300, seconds: 4.8721
+trial: 3, user: eia4, host: <unknown>, threads: 4, particles: 40000000, grainsize: 300, seconds: 4.90769
+trial: 4, user: eia4, host: <unknown>, threads: 4, particles: 40000000, grainsize: 300, seconds: 4.98144
+trial: 5, user: eia4, host: <unknown>, threads: 4, particles: 40000000, grainsize: 300, seconds: 4.84773
+average:  user: eia4, host: <unknown>, threads: 4, particles: 40000000, grainsize: 300, seconds: 4.90413
+ 
+GRAIN SIZE: 50
+trial: 1, user: eia4, host: <unknown>, threads: 4, particles: 40000000, grainsize: 50, seconds: 6.2443
+trial: 2, user: eia4, host: <unknown>, threads: 4, particles: 40000000, grainsize: 50, seconds: 6.20695
+trial: 3, user: eia4, host: <unknown>, threads: 4, particles: 40000000, grainsize: 50, seconds: 6.23571
+trial: 4, user: eia4, host: <unknown>, threads: 4, particles: 40000000, grainsize: 50, seconds: 6.31767
+trial: 5, user: eia4, host: <unknown>, threads: 4, particles: 40000000, grainsize: 50, seconds: 6.18272
+average:  user: eia4, host: <unknown>, threads: 4, particles: 40000000, grainsize: 50, seconds: 6.23747
+ 
+GRAIN SIZE: 10
+trial: 1, user: eia4, host: <unknown>, threads: 4, particles: 40000000, grainsize: 10, seconds: 11.9565
+trial: 2, user: eia4, host: <unknown>, threads: 4, particles: 40000000, grainsize: 10, seconds: 11.9026
+trial: 3, user: eia4, host: <unknown>, threads: 4, particles: 40000000, grainsize: 10, seconds: 11.9438
+trial: 4, user: eia4, host: <unknown>, threads: 4, particles: 40000000, grainsize: 10, seconds: 12.024
+trial: 5, user: eia4, host: <unknown>, threads: 4, particles: 40000000, grainsize: 10, seconds: 11.8913
+average:  user: eia4, host: <unknown>, threads: 4, particles: 40000000, grainsize: 10, seconds: 11.9436
+ 
+GRAIN SIZE: 5
+trial: 1, user: eia4, host: <unknown>, threads: 4, particles: 40000000, grainsize: 5, seconds: 19.5381
+trial: 2, user: eia4, host: <unknown>, threads: 4, particles: 40000000, grainsize: 5, seconds: 19.2306
+trial: 3, user: eia4, host: <unknown>, threads: 4, particles: 40000000, grainsize: 5, seconds: 19.2645
+trial: 4, user: eia4, host: <unknown>, threads: 4, particles: 40000000, grainsize: 5, seconds: 19.3418
+trial: 5, user: eia4, host: <unknown>, threads: 4, particles: 40000000, grainsize: 5, seconds: 19.2218
+average:  user: eia4, host: <unknown>, threads: 4, particles: 40000000, grainsize: 5, seconds: 19.3194
+ 
+GRAIN SIZE: 3
+trial: 1, user: eia4, host: <unknown>, threads: 4, particles: 40000000, grainsize: 3, seconds: 29.158
+trial: 2, user: eia4, host: <unknown>, threads: 4, particles: 40000000, grainsize: 3, seconds: 29.1014
+trial: 3, user: eia4, host: <unknown>, threads: 4, particles: 40000000, grainsize: 3, seconds: 29.1319
+trial: 4, user: eia4, host: <unknown>, threads: 4, particles: 40000000, grainsize: 3, seconds: 29.26
+trial: 5, user: eia4, host: <unknown>, threads: 4, particles: 40000000, grainsize: 3, seconds: 29.0848
+average:  user: eia4, host: <unknown>, threads: 4, particles: 40000000, grainsize: 3, seconds: 29.1472
+ 
+GRAIN SIZE: 1
+trial: 1, user: eia4, host: <unknown>, threads: 4, particles: 40000000, grainsize: 1, seconds: 47.4557
+trial: 2, user: eia4, host: <unknown>, threads: 4, particles: 40000000, grainsize: 1, seconds: 47.2634
+trial: 3, user: eia4, host: <unknown>, threads: 4, particles: 40000000, grainsize: 1, seconds: 47.455
+trial: 4, user: eia4, host: <unknown>, threads: 4, particles: 40000000, grainsize: 1, seconds: 47.3722
+trial: 5, user: eia4, host: <unknown>, threads: 4, particles: 40000000, grainsize: 1, seconds: 47.4388
+average:  user: eia4, host: <unknown>, threads: 4, particles: 40000000, grainsize: 1, seconds: 47.397

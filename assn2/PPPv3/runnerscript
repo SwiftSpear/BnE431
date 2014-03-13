@@ -1,35 +1,49 @@
 #!/bin/bash
 # Script that runs test programs and saves results to a file
 
-grainsize[0]=5000000
-grainsize[1]=2500000
-grainsize[2]=1500000
-grainsize[3]=1000000
-grainsize[4]=500000
-grainsize[5]=100000
-grainsize[6]=50000
-grainsize[7]=10000
-grainsize[8]=5000
-grainsize[9]=1000
-grainsize[10]=500
-grainsize[11]=300
-grainsize[12]=50
-grainsize[13]=10
-grainsize[14]=5
-grainsize[15]=3
+grainsize[0]=90000000
+grainsize[1]=80000000
+grainsize[2]=70000000
+grainsize[3]=60000000
+grainsize[4]=50000000
+grainsize[5]=45000000
+grainsize[6]=40000000
+grainsize[7]=35000000
+grainsize[8]=30000000
+grainsize[9]=25000000
+grainsize[10]=20000000
+grainsize[11]=15000000
+grainsize[12]=10000000
+grainsize[13]=5000000
+grainsize[14]=2500000
+grainsize[15]=1500000
+grainsize[16]=1000000
+grainsize[17]=500000
+grainsize[18]=100000
+grainsize[19]=50000
+grainsize[20]=10000
+grainsize[21]=5000
+grainsize[22]=1000
+grainsize[23]=500
+grainsize[24]=300
+grainsize[25]=50
+grainsize[26]=10
+grainsize[27]=5
+grainsize[28]=3
+grainsize[29]=1
 
-particles=5000000
-threads=2
-trials=1
+particles=40000000
+threads=4
+trials=5
 
-echo "TEST DRIVER-COMPUTE $particles PARTICLES, $threads THREADS, $trials TRIALS" >> results.txt 
+echo "TEST DRIVER-SORT $particles PARTICLES, $threads THREADS, $trials TRIALS" >> resultssort.txt 
 
 c=0
 
 while [ $c -le 15 ]
 do
-    echo " " >> results.txt
-    echo "GRAIN SIZE: ${grainsize[$c]}" >> results.txt
-    ./driver-compute --particles $particles --threads $threads --trials $trials --grainsize ${grainsize[$c]} >> results.txt
+    echo " " >> resultssort.txt
+    echo "GRAIN SIZE: ${grainsize[$c]}" >> resultssort.txt
+    ./driver-sort --particles $particles --threads $threads --trials $trials --grainsize ${grainsize[$c]} >> resultssort.txt
     (( c++ ))
 done
