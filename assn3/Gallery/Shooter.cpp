@@ -18,6 +18,8 @@ void ShooterAction(int rate,Color PlayerColor) {
      *  Rate: Choose a random lane every 1/rate s.
      *  PlayerColor : Red/Blue.
      */
+     int color = Gallery->Get(1);
+     print color;
      Gallery->Set(0,red);
 }
 
