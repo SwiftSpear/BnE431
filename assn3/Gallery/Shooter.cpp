@@ -1,13 +1,15 @@
 #include <iostream>
 #include <thread>
 #include <unistd.h>
+#include <cstdlib>
+#include <ctime>
 #include "Lanes.h"
 #include <vector>
 
 Lanes* Gallery;
 int nlanes;
 using namespace std;
-
+std::mutex shooterLock
 
 
 void ShooterAction(int rate,Color PlayerColor) {
@@ -18,9 +20,15 @@ void ShooterAction(int rate,Color PlayerColor) {
      *  Rate: Choose a random lane every 1/rate s.
      *  PlayerColor : Red/Blue.
      */
-     int color = Gallery->Get(1);
-     print color;
-     Gallery->Set(0,red);
+     //std::lock(shooter_lock)
+     //shooterLock.lock()
+     int randLane = (rand() % (rate-1))
+     int color = Gallery->Get(randLane);
+     if (color == white) {
+          Gallery->Set(randLane,PlayerColor);
+     }
+     //shooterLock.unlock()
+     
 }
 
 
@@ -61,19 +69,19 @@ void Printer(int rate) {
 
 int main(int argc, char** argv)
 {
-
+    int numlanes = 5;
     std::vector<thread> ths;
 
 
-    Gallery = new Lanes(5);
+    Gallery = new Lanes(numlanes);
     //    std::thread RedShooterT,BlueShooterT,CleanerT,PrinterT;
 
 
 
-    ths.push_back(std::thread(&ShooterAction,5,red));
-    ths.push_back(std::thread(&ShooterAction,5,blue));
+    ths.push_back(std::thread(&ShooterAction,numlanes,red));
+    ths.push_back(std::thread(&ShooterAction,numlanes,blue));
     ths.push_back(std::thread(&Cleaner));
-    ths.push_back(std::thread(&Printer,5));
+    ths.push_back(std::thread(&Printer,numlanes));
 
 
     // Join with threads

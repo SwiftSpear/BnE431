@@ -152,8 +152,9 @@ void Lanes::Print()
 {
   Colors::Modifier reds(Colors::BG_RED);
     Colors::Modifier def(Colors::BG_DEFAULT);
-    Colors::Modifier blues(Colors::FG_BLUE);
+    Colors::Modifier blues(Colors::BG_BLUE);
     Colors::Modifier greens(Colors::BG_GREEN);
+    //Colors::Modifier def(Colors::FG_DEFAULT);
 
     for (int i = 0; i < nlanes; i++)
       std::cout << "|------";
