@@ -9,7 +9,9 @@
 Lanes* Gallery;
 int nlanes;
 using namespace std;
-std::mutex shooterLock
+
+
+//std::mutex shooterLock
 
 
 void ShooterAction(int rate,Color PlayerColor) {
