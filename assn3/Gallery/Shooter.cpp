@@ -14,7 +14,7 @@ using namespace std;
 //std::mutex shooterLock
 
 
-void ShooterAction(int rate,Color PlayerColor) {
+void ShooterAction(int rate, Color PlayerColor) {
 
     /**
      *  Needs synchronization. Between Red and Blue shooters.
@@ -22,12 +22,19 @@ void ShooterAction(int rate,Color PlayerColor) {
      *  Rate: Choose a random lane every 1/rate s.
      *  PlayerColor : Red/Blue.
      */
-     //std::lock(shooter_lock)
-     //shooterLock.lock()
-     int randLane = (rand() % (rate-1))
-     int color = Gallery->Get(randLane);
-     if (color == white) {
-          Gallery->Set(randLane,PlayerColor);
+     while(1) {
+
+          //std::lock(shooter_lock)
+          //shooterLock.lock()
+          int lanenum = Gallery->Count();
+          int randLane = (rand() % (lanenum));
+          int color = Gallery->Get(randLane);
+          if (color == white) {
+               Gallery->Set(randLane,PlayerColor);
+          }
+          //shooterLock.unlock()
+          sleep(rate);
+          //need ending condition
      }
      //shooterLock.unlock()
      
@@ -59,9 +66,8 @@ void Printer(int rate) {
 
    while(1)
    {
-       sleep(1);
+       sleep(rate);
        Gallery->Print();
-       cout<<Gallery->Count();
 
    }
 
@@ -72,32 +78,42 @@ void Printer(int rate) {
 int main(int argc, char** argv)
 {
     int numlanes = 5;
-    std::vector<thread> ths;
-
+    int redShotsPerSec = -1;
+    int blueShotsPerSec = -1;
+    int numRounds = 1;
+    int redRate;
+    int blueRate;
+    // get args from argv for redrate, bluerate, numRounds, lanes
+    if (redShotsPerSec <= 0) {
+         redRate = 1;    
+    }
+    else {
+         redRate = (int) (1000.0/(double) redShotsPerSec);
+    }
+    if (blueShotsPerSec <= 0) {
+         blueRate = 1;
+    }
+    else {
+         blueRate = (int) (1000.0/(double) blueShotsPerSec);
+    }
 
     Gallery = new Lanes(numlanes);
+    cout<<"making threads\n";
     //    std::thread RedShooterT,BlueShooterT,CleanerT,PrinterT;
+    std::thread CleanerT(&Cleaner);
+    std::thread PrinterT(&Printer, 10);
+    std::thread RedShooterT(&ShooterAction,redRate,red);
+    std::thread BlueShooterT(&ShooterAction,blueRate, blue);
 
-
-
-    ths.push_back(std::thread(&ShooterAction,numlanes,red));
-    ths.push_back(std::thread(&ShooterAction,numlanes,blue));
-    ths.push_back(std::thread(&Cleaner));
-    ths.push_back(std::thread(&Printer,numlanes));
-
+    cout<<"threads made\n";
+    sleep(20);
 
     // Join with threads
-    //    RedShooterT.join();
-    //  BlueShooterT.join();
-    //  CleanerT.join();
-    // PrinterT.join();
-
-
-    for (auto& th : ths) {
-
-        th.join();
-
-    }
+    cout<<"joining threads\n";
+    RedShooterT.join();
+    BlueShooterT.join();
+    CleanerT.join();
+    PrinterT.join();
 
 
     return 0;
