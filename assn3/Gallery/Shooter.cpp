@@ -25,26 +25,43 @@ void ShooterAction(int rate, Color PlayerColor) {
      *  Rate: Choose a random lane every 1/rate s.
      *  PlayerColor : Red/Blue.
      */
+     shooterLock.lock();
      int lanenum = Gallery->Count();
      //cout << "lanenum = " << lanenum << endl;
      while(coloredLanes != lanenum) {
-
-          shooterLock.lock();
+          bool cleaner = true;
+          
           int randLane = (rand() % (lanenum));
           int color = Gallery->Get(randLane);
           if (color == white) {
                Gallery->Set(randLane,PlayerColor);
                ++coloredLanes; 
-               //cout<<"coloredLanes " << coloredLanes << endl;;
+               //cout<<"coloredLanes " << coloredLanes << endl;
           }
+          
+          for (int i =0; i< lanenum; i++){
+            if (Gallery->Get(i) == white)
+            {
+              cleaner = false;
+              break;
+            }
+          }
+
+          if(cleaner)
+          {
+            //cout << "Cleaning" << endl;
+            Gallery->Clear();
+
+            }
           shooterLock.unlock();
+          
           sleep(rate);
           //need ending condition
-     }
+     
      //shooterLock.unlock()
      
 }
-
+}
 
 void Cleaner() {
 
@@ -73,7 +90,6 @@ void Printer(int rate) {
    {
        sleep(rate);
        Gallery->Print();
-
    }
 
 }
