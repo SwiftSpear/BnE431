@@ -5,13 +5,16 @@
 #include <ctime>
 #include "Lanes.h"
 #include <vector>
+#include <mutex>
 
 Lanes* Gallery;
 int nlanes;
+int coloredLanes = 0;
+std::mutex shooterLock;
 using namespace std;
 
 
-//std::mutex shooterLock
+
 
 
 void ShooterAction(int rate, Color PlayerColor) {
@@ -22,17 +25,19 @@ void ShooterAction(int rate, Color PlayerColor) {
      *  Rate: Choose a random lane every 1/rate s.
      *  PlayerColor : Red/Blue.
      */
-     while(1) {
+     int lanenum = Gallery->Count();
+     //cout << "lanenum = " << lanenum << endl;
+     while(coloredLanes != lanenum) {
 
-          //std::lock(shooter_lock)
-          //shooterLock.lock()
-          int lanenum = Gallery->Count();
+          shooterLock.lock();
           int randLane = (rand() % (lanenum));
           int color = Gallery->Get(randLane);
           if (color == white) {
                Gallery->Set(randLane,PlayerColor);
+               ++coloredLanes; 
+               //cout<<"coloredLanes " << coloredLanes << endl;;
           }
-          //shooterLock.unlock()
+          shooterLock.unlock();
           sleep(rate);
           //need ending condition
      }
@@ -63,8 +68,8 @@ void Printer(int rate) {
      *  Not a particular concern if we don't shoot two lanes at the same time.
      *
      */
-
-   while(1)
+   int lanenum = Gallery->Count();
+   while(lanenum != coloredLanes)
    {
        sleep(rate);
        Gallery->Print();
@@ -101,7 +106,7 @@ int main(int argc, char** argv)
     cout<<"making threads\n";
     //    std::thread RedShooterT,BlueShooterT,CleanerT,PrinterT;
     std::thread CleanerT(&Cleaner);
-    std::thread PrinterT(&Printer, 10);
+    std::thread PrinterT(&Printer, 1);
     std::thread RedShooterT(&ShooterAction,redRate,red);
     std::thread BlueShooterT(&ShooterAction,blueRate, blue);
 
