@@ -6,7 +6,7 @@
 #include "Lanes.h"
 #include <vector>
 #include <mutex>
-#include "tsx-tools/rtm.h"
+
 
 Lanes* Gallery;
 int nlanes;
@@ -26,8 +26,28 @@ void ShooterAction(int rate, Color PlayerColor) {
      *  Rate: Choose a random lane every 1/rate s.
      *  PlayerColor : Red/Blue.
      */
-     xbegin();
-     int lanenum = Gallery->Count();
+     
+       int lock;
+
+
+
+while (__atomic_exchange_n(&lock, 1, __ATOMIC_ACQUIRE|__ATOMIC_HLE_ACQUIRE) != 0) {
+
+  int val;
+ 
+
+  /* Wait for lock to become free again before retrying. */
+  do {
+
+    _mm_pause();
+
+    /* Abort speculation */
+    __atomic_load(&lock, &val, __ATOMIC_CONSUME);
+
+  } while (val == 1);
+
+
+  int lanenum = Gallery->Count();
      //cout << "lanenum = " << lanenum << endl;
      while(coloredLanes != lanenum) {
           bool cleaner = true;
@@ -54,7 +74,13 @@ void ShooterAction(int rate, Color PlayerColor) {
             Gallery->Clear();
 
             }
-          xend();
+
+ }
+
+
+
+     
+         
           
           sleep(rate);
           //need ending condition
