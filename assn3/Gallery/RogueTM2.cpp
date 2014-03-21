@@ -11,7 +11,7 @@
 Lanes* Gallery;
 int nlanes;
 int coloredLanes = 0;
-std::mutex shooterLock;
+//std::mutex shooterLock;
 using namespace std;
 
 
