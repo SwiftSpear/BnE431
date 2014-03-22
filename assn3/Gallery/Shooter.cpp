@@ -6,6 +6,7 @@
 #include "Lanes.h"
 #include <vector>
 #include <mutex>
+#include <getopt.h>
 
 Lanes* Gallery;
 int nlanes;
@@ -94,6 +95,14 @@ void Printer(int rate) {
 
 }
 
+static struct option long_options[] =
+  {
+    {"redrate", required_argument, 0, 'r'},
+    {"bluerate", required_argument, 0, 'b'},
+    {"rounds", required_argument, 0, 'n'},
+    {"lanes", required_argument, 0, 'a'},
+    {0, 0, 0, 0}
+  };
 
 
 int main(int argc, char** argv)
@@ -104,7 +113,47 @@ int main(int argc, char** argv)
     int numRounds = 1;
     int redRate;
     int blueRate;
+    cout<<"start of it all";
     // get args from argv for redrate, bluerate, numRounds, lanes
+    while (true) {
+        int option_index = 0;
+        int c = getopt_long_only(argc, argv, "r:b:n:a:",
+                                 long_options, &option_index);
+        /* Detect the end of the options. */
+        if (c == -1)
+          break;
+    
+        switch (c) {
+        case 0:
+          /* If this option set a flag, do nothing else now. */
+          break;
+    
+        case 'r':
+          redShotsPerSec = atoi(optarg);
+          break;
+    
+        case 'b':
+          blueShotsPerSec = atoi(optarg);
+          break;
+    
+        case 'n':
+          numRounds = atoi(optarg);
+          break;
+    
+        case 'a':
+          numlanes = atoi(optarg);
+          break;
+    
+        case '?':
+          /* getopt_long already printed an error message. */
+          exit(1);
+          break;
+    
+        default:
+          exit(1);
+        }
+
+    }
     if (redShotsPerSec <= 0) {
          redRate = 1;    
     }
@@ -117,9 +166,7 @@ int main(int argc, char** argv)
     else {
          blueRate = (int) (1000.0/(double) blueShotsPerSec);
     }
-
     Gallery = new Lanes(numlanes);
-    cout<<"making threads\n";
     //    std::thread RedShooterT,BlueShooterT,CleanerT,PrinterT;
     std::thread CleanerT(&Cleaner);
     std::thread PrinterT(&Printer, 1);
