@@ -158,23 +158,23 @@ int main(int argc, char** argv)
          redRate = 1;    
     }
     else {
-         redRate = (int) (1000.0/(double) redShotsPerSec);
+         redRate = (int) (1000000.0/(double) redShotsPerSec);
     }
     if (blueShotsPerSec <= 0) {
          blueRate = 1;
     }
     else {
-         blueRate = (int) (1000.0/(double) blueShotsPerSec);
+         blueRate = (int) (1000000.0/(double) blueShotsPerSec);
     }
     Gallery = new Lanes(numlanes);
     //    std::thread RedShooterT,BlueShooterT,CleanerT,PrinterT;
     std::thread CleanerT(&Cleaner);
-    std::thread PrinterT(&Printer, 1);
+    std::thread PrinterT(&Printer, 100000);
     std::thread RedShooterT(&ShooterAction,redRate,red);
     std::thread BlueShooterT(&ShooterAction,blueRate, blue);
 
     cout<<"threads made\n";
-    usleep(20);
+    usleep(1000000);
 
     // Join with threads
     cout<<"joining threads\n";
