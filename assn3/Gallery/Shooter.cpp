@@ -56,7 +56,7 @@ void ShooterAction(int rate, Color PlayerColor) {
             }
           shooterLock.unlock();
           
-          sleep(rate);
+          usleep(rate);
           //need ending condition
      
      //shooterLock.unlock()
@@ -89,7 +89,7 @@ void Printer(int rate) {
    int lanenum = Gallery->Count();
    while(lanenum != coloredLanes)
    {
-       sleep(rate);
+       usleep(rate);
        Gallery->Print();
    }
 
@@ -174,7 +174,7 @@ int main(int argc, char** argv)
     std::thread BlueShooterT(&ShooterAction,blueRate, blue);
 
     cout<<"threads made\n";
-    sleep(20);
+    usleep(20);
 
     // Join with threads
     cout<<"joining threads\n";
