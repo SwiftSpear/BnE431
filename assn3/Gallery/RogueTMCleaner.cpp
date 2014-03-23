@@ -103,8 +103,6 @@ void Cleaner() {
       //cout << "coloredLanes " << coloredLanes << endl;
      }
 
- if ((status = _xbegin ()) == _XBEGIN_STARTED) {
-
     if (coloredLanes == lanenum){
       Gallery->Print();
       Gallery->Clear();
