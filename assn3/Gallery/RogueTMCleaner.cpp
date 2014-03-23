@@ -6,7 +6,8 @@
 #include "Lanes.h"
 #include <vector>
 #include <mutex>
-#include "tsx-tools/rtm.h"
+#include <immintrin.h>
+
 
 Lanes* Gallery;
 int nlanes;
@@ -26,12 +27,26 @@ void ShooterAction(int rate, Color PlayerColor) {
      *  Rate: Choose a random lane every 1/rate s.
      *  PlayerColor : Red/Blue.
      */
-      int nretries=0;
- int status;
+     
+       int lock;
 
- if ((status = _xbegin ()) == _XBEGIN_STARTED) {
-  int lanenum = Gallery->Count();
-  //cout << "lanenum = " << lanenum << endl;
+
+
+while (__atomic_exchange_n(&lock, 1, __ATOMIC_ACQUIRE|__ATOMIC_HLE_ACQUIRE) != 0) {
+
+  int val;
+ 
+
+  /* Wait for lock to become free again before retrying. */
+  do {
+
+    _mm_pause();
+
+    /* Abort speculation */
+
+  } while (val == 1);
+    int lanenum = Gallery->Count();
+    //cout << "lanenum = " << lanenum << endl;
      while(coloredLanes != lanenum) {
           bool cleaner = true;
           
@@ -42,18 +57,20 @@ void ShooterAction(int rate, Color PlayerColor) {
                ++coloredLanes; 
                //cout<<"coloredLanes " << coloredLanes << endl;
           }
-          
-}
-   
-        _xend ();
- }
- else {
-        nretries++;
-    }
 
-    //std::cout<<nretries;
-     sleep(rate);
-     }
+ }
+
+
+     
+         __atomic_store_n(&lock, 0, __ATOMIC_RELEASE|__ATOMIC_HLE_RELEASE);
+          
+          sleep(rate);
+          //need ending condition
+     
+     //shooterLock.unlock()
+     
+}
+}
 
 void Cleaner() {
 
@@ -64,10 +81,24 @@ void Cleaner() {
      *  Once all lanes are shot. Cleaner starts up.
      *  Once cleaner starts up shooters wait for cleaner to finish.
      */
+     
+     int lock;
 
-     int nretries=0;
- int status;
- int lanenum = Gallery->Count();
+    while (__atomic_exchange_n(&lock, 1, __ATOMIC_ACQUIRE|__ATOMIC_HLE_ACQUIRE) != 0) {
+
+  int val;
+ 
+
+  /* Wait for lock to become free again before retrying. */
+  do {
+
+    _mm_pause();
+
+
+
+     }while (val == 1);
+
+     int lanenum = Gallery->Count();
      while(coloredLanes != lanenum){
       //cout << "coloredLanes " << coloredLanes << endl;
      }
@@ -75,17 +106,11 @@ void Cleaner() {
  if ((status = _xbegin ()) == _XBEGIN_STARTED) {
 
     if (coloredLanes == lanenum){
+      Gallery->Print();
       Gallery->Clear();
       
      }
-        _xend ();
- }
- else {
-        nretries++;
-    }
-
-    std::cout<<nretries;
-
+     __atomic_store_n(&lock, 0, __ATOMIC_RELEASE|__ATOMIC_HLE_RELEASE);
 }
 
 
@@ -99,7 +124,7 @@ void Printer(int rate) {
      *
      */
    int lanenum = Gallery->Count();
-   while(coloredLanes != lanenum)
+   while(lanenum != coloredLanes)
    {
        sleep(rate);
        Gallery->Print();
@@ -111,7 +136,7 @@ void Printer(int rate) {
 
 int main(int argc, char** argv)
 {
-    int numlanes = 6;
+    int numlanes = 5;
     int redShotsPerSec = -1;
     int blueShotsPerSec = -1;
     int numRounds = 1;
