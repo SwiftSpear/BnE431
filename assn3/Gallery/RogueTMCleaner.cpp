@@ -110,6 +110,7 @@ void Cleaner() {
      }
      __atomic_store_n(&lock, 0, __ATOMIC_RELEASE|__ATOMIC_HLE_RELEASE);
 }
+}
 
 
 void Printer(int rate) {
