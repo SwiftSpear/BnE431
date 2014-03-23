@@ -134,7 +134,7 @@ void Printer(int rate) {
 
 int main(int argc, char** argv)
 {
-    int numlanes = 5;
+    int numlanes = 6;
     int redShotsPerSec = -1;
     int blueShotsPerSec = -1;
     int numRounds = 1;
