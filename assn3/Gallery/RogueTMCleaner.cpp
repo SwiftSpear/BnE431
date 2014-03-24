@@ -62,7 +62,6 @@ while (__atomic_exchange_n(&lock, 1, __ATOMIC_ACQUIRE|__ATOMIC_HLE_ACQUIRE) != 0
             }
           }
 
-
  }
 
 
@@ -87,7 +86,18 @@ void Cleaner() {
      *  Once all lanes are shot. Cleaner starts up.
      *  Once cleaner starts up shooters wait for cleaner to finish.
      */
+          int lanenum = Gallery->Count();
      
+     while(coloredLanes <lanenum){
+      //cout << "coloredLanes " << coloredLanes << endl;
+     }
+     
+     if (coloredLanes == lanenum){
+      //cout << "Cl coloredLanes" << coloredLanes << endl;
+      Gallery->Print();
+      Gallery->Clear();
+      
+     }
 
 }
 
