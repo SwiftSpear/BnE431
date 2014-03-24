@@ -91,14 +91,14 @@ void Cleaner() {
      while(coloredLanes <lanenum){
       //cout << "coloredLanes " << coloredLanes << endl;
      }
-     
+     shooterLock.Lock();
      if (coloredLanes == lanenum){
       //cout << "Cl coloredLanes" << coloredLanes << endl;
       Gallery->Print();
       Gallery->Clear();
       
      }
-
+     shooterLock.unlock();
 }
 
 
