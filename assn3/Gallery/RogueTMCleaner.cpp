@@ -76,12 +76,7 @@ void Cleaner() {
      
      int lock2;
 
-    while (__atomic_exchange_n(&lock2, 1, __ATOMIC_ACQUIRE|__ATOMIC_HLE_ACQUIRE) != 0) {
 
-  /* Wait for lock to become free again before retrying. */
-
-
-    _mm_pause();
 
 
 
@@ -90,6 +85,12 @@ void Cleaner() {
       //cout << "coloredLanes " << coloredLanes << endl;
      }
 
+    while (__atomic_exchange_n(&lock2, 1, __ATOMIC_ACQUIRE|__ATOMIC_HLE_ACQUIRE) != 0) {
+
+  /* Wait for lock to become free again before retrying. */
+
+
+    _mm_pause();
     if (coloredLanes == lanenum){
       Gallery->Print();
       Gallery->Clear();
