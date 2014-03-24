@@ -6,32 +6,43 @@
 #include "Lanes.h"
 #include <vector>
 #include <mutex>
-#include "tsx-tools/rtm.h"
+#include <immintrin.h>
+
 
 Lanes* Gallery;
 int nlanes;
 int coloredLanes = 0;
 //std::mutex shooterLock;
 using namespace std;
-
+mutex shooterLock;
 
 
 
 
 void ShooterAction(int rate, Color PlayerColor) {
+     
+     
+       int lock;
 
-    /**
-     *  Needs synchronization. Between Red and Blue shooters.
-     *  Choose a random lane and shoot.
-     *  Rate: Choose a random lane every 1/rate s.
-     *  PlayerColor : Red/Blue.
-     */
-      int nretries=0;
- int status;
 
- if ((status = _xbegin ()) == _XBEGIN_STARTED) {
+
+while (__atomic_exchange_n(&lock, 1, __ATOMIC_ACQUIRE|__ATOMIC_HLE_ACQUIRE) != 0) {
+
+  int val;
+ 
+
+  /* Wait for lock to become free again before retrying. */
+  do {
+
+    _mm_pause();
+
+    /* Abort speculation */
+
+  } while (val == 1);
+
+
   int lanenum = Gallery->Count();
-  //cout << "lanenum = " << lanenum << endl;
+     //cout << "lanenum = " << lanenum << endl;
      while(coloredLanes != lanenum) {
           bool cleaner = true;
           
@@ -43,17 +54,28 @@ void ShooterAction(int rate, Color PlayerColor) {
                //cout<<"coloredLanes " << coloredLanes << endl;
           }
           
-}
-   
-        _xend ();
- }
- else {
-        nretries++;
-    }
+          for (int i =0; i< lanenum; i++){
+            if (Gallery->Get(i) == white)
+            {
+              cleaner = false;
+              break;
+            }
+          }
 
-    //std::cout<<nretries;
-     sleep(rate);
-     }
+ }
+
+
+
+     
+         __atomic_store_n(&lock, 0, __ATOMIC_RELEASE|__ATOMIC_HLE_RELEASE);
+          
+          sleep(rate);
+          //need ending condition
+     
+     //shooterLock.unlock()
+     
+}
+}
 
 void Cleaner() {
 
@@ -64,28 +86,22 @@ void Cleaner() {
      *  Once all lanes are shot. Cleaner starts up.
      *  Once cleaner starts up shooters wait for cleaner to finish.
      */
-
-     int nretries=0;
- int status;
- int lanenum = Gallery->Count();
-     while(coloredLanes != lanenum){
+          int lanenum = Gallery->Count();
+     
+     while(coloredLanes <lanenum){
       //cout << "coloredLanes " << coloredLanes << endl;
      }
-
- if ((status = _xbegin ()) == _XBEGIN_STARTED) {
-
-    if (coloredLanes == lanenum){
+          int lockvar;
+     
+     /* Acquire lock with lock elision */
+      shooterLock.lock();
+     if (coloredLanes == lanenum){
+      //cout << "Cl coloredLanes" << coloredLanes << endl;
+      Gallery->Print();
       Gallery->Clear();
-      
+      Gallery->Print();
      }
-        _xend ();
- }
- else {
-        nretries++;
-    }
-
-    std::cout<<nretries;
-
+     shooterLock.unlock();
 }
 
 
@@ -99,7 +115,7 @@ void Printer(int rate) {
      *
      */
    int lanenum = Gallery->Count();
-   while(coloredLanes != lanenum)
+   while(lanenum != coloredLanes)
    {
        sleep(rate);
        Gallery->Print();
@@ -111,7 +127,7 @@ void Printer(int rate) {
 
 int main(int argc, char** argv)
 {
-    int numlanes = 6;
+    int numlanes = 5;
     int redShotsPerSec = -1;
     int blueShotsPerSec = -1;
     int numRounds = 1;
@@ -134,10 +150,11 @@ int main(int argc, char** argv)
     Gallery = new Lanes(numlanes);
     cout<<"making threads\n";
     //    std::thread RedShooterT,BlueShooterT,CleanerT,PrinterT;
-    std::thread CleanerT(&Cleaner);
-    std::thread PrinterT(&Printer, 1);
     std::thread RedShooterT(&ShooterAction,redRate,red);
     std::thread BlueShooterT(&ShooterAction,blueRate, blue);
+    std::thread CleanerT(&Cleaner);
+    std::thread PrinterT(&Printer, 1);
+    
 
     cout<<"threads made\n";
     sleep(20);

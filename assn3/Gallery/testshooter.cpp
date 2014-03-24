@@ -42,7 +42,6 @@ while (__atomic_exchange_n(&lock, 1, __ATOMIC_ACQUIRE|__ATOMIC_HLE_ACQUIRE) != 0
     _mm_pause();
 
     /* Abort speculation */
-    __atomic_load(&lock, &val, __ATOMIC_CONSUME);
 
   } while (val == 1);
 
@@ -57,7 +56,7 @@ while (__atomic_exchange_n(&lock, 1, __ATOMIC_ACQUIRE|__ATOMIC_HLE_ACQUIRE) != 0
           if (color == white) {
                Gallery->Set(randLane,PlayerColor);
                ++coloredLanes; 
-               //cout<<"coloredLanes " << coloredLanes << endl;
+               cout<<"coloredLanes " << coloredLanes << endl;
           }
           
           for (int i =0; i< lanenum; i++){
@@ -70,7 +69,7 @@ while (__atomic_exchange_n(&lock, 1, __ATOMIC_ACQUIRE|__ATOMIC_HLE_ACQUIRE) != 0
 
           if(cleaner)
           {
-            //cout << "Cleaning" << endl;
+            cout << "Cleaning" << endl;
             Gallery->Clear();
 
             }
@@ -80,7 +79,7 @@ while (__atomic_exchange_n(&lock, 1, __ATOMIC_ACQUIRE|__ATOMIC_HLE_ACQUIRE) != 0
 
 
      
-         
+         __atomic_store_n(&lock, 0, __ATOMIC_RELEASE|__ATOMIC_HLE_RELEASE);
           
           sleep(rate);
           //need ending condition

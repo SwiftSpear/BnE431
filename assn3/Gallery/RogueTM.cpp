@@ -6,7 +6,8 @@
 #include "Lanes.h"
 #include <vector>
 #include <mutex>
-#include "tsx-tools/rtm.h"
+#include <immintrin.h>
+
 
 Lanes* Gallery;
 int nlanes;
@@ -26,11 +27,25 @@ void ShooterAction(int rate, Color PlayerColor) {
      *  Rate: Choose a random lane every 1/rate s.
      *  PlayerColor : Red/Blue.
      */
- int nretries=0;
- int status;
- int counter;
+     
+       int lock;
 
- if ((status = _xbegin ()) == _XBEGIN_STARTED) {
+
+
+while (__atomic_exchange_n(&lock, 1, __ATOMIC_ACQUIRE|__ATOMIC_HLE_ACQUIRE) != 0) {
+
+  int val;
+ 
+
+  /* Wait for lock to become free again before retrying. */
+  do {
+
+    _mm_pause();
+
+    /* Abort speculation */
+
+  } while (val == 1);
+
 
   int lanenum = Gallery->Count();
      //cout << "lanenum = " << lanenum << endl;
@@ -44,6 +59,7 @@ void ShooterAction(int rate, Color PlayerColor) {
                ++coloredLanes; 
                //cout<<"coloredLanes " << coloredLanes << endl;
           }
+          
           for (int i =0; i< lanenum; i++){
             if (Gallery->Get(i) == white)
             {
@@ -51,26 +67,29 @@ void ShooterAction(int rate, Color PlayerColor) {
               break;
             }
           }
+
           if(cleaner)
           {
+            Gallery->Print();
             //cout << "Cleaning" << endl;
             Gallery->Clear();
 
             }
-          
-          
-          
-        }
 
-        _xend ();
  }
- else {
-        nretries++;
-    }
-    sleep(rate);
-    //std::cout<<nretries;
-}
 
+
+
+     
+         __atomic_store_n(&lock, 0, __ATOMIC_RELEASE|__ATOMIC_HLE_RELEASE);
+          
+          sleep(rate);
+          //need ending condition
+     
+     //shooterLock.unlock()
+     
+}
+}
 
 void Cleaner() {
 
