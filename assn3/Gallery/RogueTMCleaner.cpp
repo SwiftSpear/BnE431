@@ -14,7 +14,7 @@ int nlanes;
 int coloredLanes = 0;
 //std::mutex shooterLock;
 using namespace std;
-
+mutex shooterLock;
 
 
 
@@ -74,7 +74,7 @@ void Cleaner() {
      *  Once cleaner starts up shooters wait for cleaner to finish.
      */
      
-     int lock2;
+
 
 
 
@@ -85,19 +85,15 @@ void Cleaner() {
       //cout << "coloredLanes " << coloredLanes << endl;
      }
 
-    while (__atomic_exchange_n(&lock2, 1, __ATOMIC_ACQUIRE|__ATOMIC_HLE_ACQUIRE) != 0) {
-
-  /* Wait for lock to become free again before retrying. */
-
-
-    _mm_pause();
+  
+     shooterLock.lock();
     if (coloredLanes == lanenum){
       Gallery->Print();
       Gallery->Clear();
       
      }
-     __atomic_store_n(&lock2, 0, __ATOMIC_RELEASE|__ATOMIC_HLE_RELEASE);
-}
+  shooterLock.unlock();
+
 }
 
 
