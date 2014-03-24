@@ -82,11 +82,11 @@ void Cleaner() {
      *  Once cleaner starts up shooters wait for cleaner to finish.
      */
      
-     int lock;
+     int lock2;
 
-    while (__atomic_exchange_n(&lock, 1, __ATOMIC_ACQUIRE|__ATOMIC_HLE_ACQUIRE) != 0) {
+    while (__atomic_exchange_n(&lock2, 1, __ATOMIC_ACQUIRE|__ATOMIC_HLE_ACQUIRE) != 0) {
 
-  int val;
+  int val2;
  
 
   /* Wait for lock to become free again before retrying. */
@@ -96,7 +96,7 @@ void Cleaner() {
 
 
 
-     }while (val == 1);
+     }while (val2 == 1);
 
      int lanenum = Gallery->Count();
      while(coloredLanes != lanenum){
@@ -108,7 +108,7 @@ void Cleaner() {
       Gallery->Clear();
       
      }
-     __atomic_store_n(&lock, 0, __ATOMIC_RELEASE|__ATOMIC_HLE_RELEASE);
+     __atomic_store_n(&lock2, 0, __ATOMIC_RELEASE|__ATOMIC_HLE_RELEASE);
 }
 }
 
