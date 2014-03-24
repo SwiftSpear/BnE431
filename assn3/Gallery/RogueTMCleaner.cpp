@@ -146,10 +146,11 @@ int main(int argc, char** argv)
     Gallery = new Lanes(numlanes);
     cout<<"making threads\n";
     //    std::thread RedShooterT,BlueShooterT,CleanerT,PrinterT;
-    std::thread CleanerT(&Cleaner);
-    std::thread PrinterT(&Printer, 1);
     std::thread RedShooterT(&ShooterAction,redRate,red);
     std::thread BlueShooterT(&ShooterAction,blueRate, blue);
+    std::thread CleanerT(&Cleaner);
+    std::thread PrinterT(&Printer, 1);
+    
 
     cout<<"threads made\n";
     sleep(20);
