@@ -20,13 +20,7 @@ mutex shooterLock;
 
 
 void ShooterAction(int rate, Color PlayerColor) {
-
-    /**
-     *  Needs synchronization. Between Red and Blue shooters.
-     *  Choose a random lane and shoot.
-     *  Rate: Choose a random lane every 1/rate s.
-     *  PlayerColor : Red/Blue.
-     */
+     
      
        int lock;
 
@@ -34,11 +28,21 @@ void ShooterAction(int rate, Color PlayerColor) {
 
 while (__atomic_exchange_n(&lock, 1, __ATOMIC_ACQUIRE|__ATOMIC_HLE_ACQUIRE) != 0) {
 
+  int val;
+ 
+
+  /* Wait for lock to become free again before retrying. */
+  do {
 
     _mm_pause();
 
-    int lanenum = Gallery->Count();
-    //cout << "lanenum = " << lanenum << endl;
+    /* Abort speculation */
+
+  } while (val == 1);
+
+
+  int lanenum = Gallery->Count();
+     //cout << "lanenum = " << lanenum << endl;
      while(coloredLanes != lanenum) {
           bool cleaner = true;
           
@@ -49,8 +53,25 @@ while (__atomic_exchange_n(&lock, 1, __ATOMIC_ACQUIRE|__ATOMIC_HLE_ACQUIRE) != 0
                ++coloredLanes; 
                //cout<<"coloredLanes " << coloredLanes << endl;
           }
+          
+          for (int i =0; i< lanenum; i++){
+            if (Gallery->Get(i) == white)
+            {
+              cleaner = false;
+              break;
+            }
+          }
+
+          if(cleaner)
+          {
+            Gallery->Print();
+            //cout << "Cleaning" << endl;
+            Gallery->Clear();
+
+            }
 
  }
+
 
 
      
@@ -74,25 +95,6 @@ void Cleaner() {
      *  Once cleaner starts up shooters wait for cleaner to finish.
      */
      
-
-
-
-
-
-
-     int lanenum = Gallery->Count();
-     while(coloredLanes != lanenum){
-      //cout << "coloredLanes " << coloredLanes << endl;
-     }
-
-  
-     shooterLock.lock();
-    if (coloredLanes == lanenum){
-      Gallery->Print();
-      Gallery->Clear();
-      
-     }
-  shooterLock.unlock();
 
 }
 
