@@ -94,15 +94,14 @@ void Cleaner() {
           int lockvar;
      
      /* Acquire lock with lock elision */
-     while (__atomic_exchange_n(&lockvar, 1, __ATOMIC_ACQUIRE|__ATOMIC_HLE_ACQUIRE))
-         _mm_pause(); /* Abort failed transaction */
+      shooterLock.lock();
      if (coloredLanes == lanenum){
       //cout << "Cl coloredLanes" << coloredLanes << endl;
       Gallery->Print();
       Gallery->Clear();
-      
+      Gallery->Print();
      }
-     __atomic_store_n(&lockvar, 0, __ATOMIC_RELEASE|__ATOMIC_HLE_RELEASE);
+     shooterLock.unlock();
 }
 
 
