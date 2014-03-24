@@ -34,17 +34,9 @@ void ShooterAction(int rate, Color PlayerColor) {
 
 while (__atomic_exchange_n(&lock, 1, __ATOMIC_ACQUIRE|__ATOMIC_HLE_ACQUIRE) != 0) {
 
-  int val;
- 
-
-  /* Wait for lock to become free again before retrying. */
-  do {
 
     _mm_pause();
 
-    /* Abort speculation */
-
-  } while (val == 1);
     int lanenum = Gallery->Count();
     //cout << "lanenum = " << lanenum << endl;
      while(coloredLanes != lanenum) {
@@ -86,17 +78,12 @@ void Cleaner() {
 
     while (__atomic_exchange_n(&lock2, 1, __ATOMIC_ACQUIRE|__ATOMIC_HLE_ACQUIRE) != 0) {
 
-  int val2;
- 
-
   /* Wait for lock to become free again before retrying. */
-  do {
+
 
     _mm_pause();
 
 
-
-     }while (val2 == 1);
 
      int lanenum = Gallery->Count();
      while(coloredLanes != lanenum){
