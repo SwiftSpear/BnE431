@@ -101,6 +101,7 @@ static struct option long_options[] =
     {"bluerate", required_argument, 0, 'b'},
     {"rounds", required_argument, 0, 'n'},
     {"lanes", required_argument, 0, 'l'},
+    {"printoff", no_argument, 0, 'p'},
     {0, 0, 0, 0}
   };
 
@@ -111,6 +112,7 @@ int main(int argc, char** argv)
     int redShotsPerSec = -1;
     int blueShotsPerSec = -1;
     int numRounds = 1;
+    bool enablePrint = true;
     int redRate;
     int blueRate;
     double elapsed;
@@ -119,7 +121,7 @@ int main(int argc, char** argv)
     // get args from argv for redrate, bluerate, numRounds, lanes
     while (true) {
         int option_index = 0;
-        int c = getopt_long_only(argc, argv, "r:b:n:l:",
+        int c = getopt_long_only(argc, argv, "r:b:n:l:p",
                                  long_options, &option_index);
         /* Detect the end of the options. */
         if (c == -1)
@@ -144,6 +146,10 @@ int main(int argc, char** argv)
 
         case 'l':
           numlanes = atoi(optarg);
+          break;
+
+        case 'p':
+          enablePrint = false;
           break;
 
         case '?':
@@ -172,7 +178,9 @@ int main(int argc, char** argv)
 
     start = clock();
     std::thread CleanerT(&Cleaner);
-    std::thread PrinterT(&Printer, 1000);
+    std::thread PrinterT;
+    if (enablePrint) {
+        PrinterT = std::thread(&Printer, 1000);}
     std::thread RedShooterT(&ShooterAction,redRate,red);
     std::thread BlueShooterT(&ShooterAction,blueRate, blue);
 
@@ -181,10 +189,10 @@ int main(int argc, char** argv)
     RedShooterT.join();
     BlueShooterT.join();
     CleanerT.join();
-    PrinterT.join();
+    if (enablePrint) {
+        PrinterT.join();}
     end = clock();
     elapsed = (double) (end - start)/(CLOCKS_PER_SEC/1000);
     cout<<"Elapsed time: "<<elapsed<<" ms\n";
     return 0;
 }
-
