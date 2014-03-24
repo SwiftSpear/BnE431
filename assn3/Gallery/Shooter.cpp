@@ -6,6 +6,8 @@
 #include "Lanes.h"
 #include <vector>
 #include <mutex>
+
+#include <time.h>
 #include <getopt.h>
 
 Lanes* Gallery;
@@ -100,7 +102,7 @@ static struct option long_options[] =
     {"redrate", required_argument, 0, 'r'},
     {"bluerate", required_argument, 0, 'b'},
     {"rounds", required_argument, 0, 'n'},
-    {"lanes", required_argument, 0, 'a'},
+    {"lanes", required_argument, 0, 'l'},
     {0, 0, 0, 0}
   };
 
@@ -113,11 +115,13 @@ int main(int argc, char** argv)
     int numRounds = 1;
     int redRate;
     int blueRate;
-    cout<<"start of it all";
+    double elapsed;
+    clock_t start, end;
+
     // get args from argv for redrate, bluerate, numRounds, lanes
     while (true) {
         int option_index = 0;
-        int c = getopt_long_only(argc, argv, "r:b:n:a:",
+        int c = getopt_long_only(argc, argv, "r:b:n:l:",
                                  long_options, &option_index);
         /* Detect the end of the options. */
         if (c == -1)
@@ -140,7 +144,7 @@ int main(int argc, char** argv)
           numRounds = atoi(optarg);
           break;
     
-        case 'a':
+        case 'l':
           numlanes = atoi(optarg);
           break;
     
@@ -167,22 +171,21 @@ int main(int argc, char** argv)
          blueRate = (int) (1000000.0/(double) blueShotsPerSec);
     }
     Gallery = new Lanes(numlanes);
-    //    std::thread RedShooterT,BlueShooterT,CleanerT,PrinterT;
+
+    start = clock();
     std::thread CleanerT(&Cleaner);
-    std::thread PrinterT(&Printer, 100000);
+    std::thread PrinterT(&Printer, 1000);
     std::thread RedShooterT(&ShooterAction,redRate,red);
     std::thread BlueShooterT(&ShooterAction,blueRate, blue);
-
-    cout<<"threads made\n";
-    usleep(1000000);
-
+    
+    
     // Join with threads
-    cout<<"joining threads\n";
     RedShooterT.join();
     BlueShooterT.join();
     CleanerT.join();
     PrinterT.join();
-
-
+    end = clock();
+    elapsed = (double) (end - start)/(CLOCKS_PER_SEC/1000);
+    cout<<"Elapsed time: "<<elapsed<<" ms\n";
     return 0;
 }
