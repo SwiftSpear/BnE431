@@ -53,23 +53,7 @@ while (__atomic_exchange_n(&lock, 1, __ATOMIC_ACQUIRE|__ATOMIC_HLE_ACQUIRE) != 0
                ++coloredLanes; 
                //cout<<"coloredLanes " << coloredLanes << endl;
           }
-          
-          for (int i =0; i< lanenum; i++){
-            if (Gallery->Get(i) == white)
-            {
-              cleaner = false;
-              break;
-            }
-          }
-
-          if(cleaner)
-          {
-            Gallery->Print();
-            //cout << "Cleaning" << endl;
-            Gallery->Clear();
-
-            }
-
+         
  }
 
 
