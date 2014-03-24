@@ -8,6 +8,8 @@
 #include <mutex>
 #include <immintrin.h>
 
+#include <time.h>
+#include <getopt.h>
 
 Lanes* Gallery;
 int nlanes;
@@ -91,7 +93,7 @@ while (__atomic_exchange_n(&lock, 1, __ATOMIC_ACQUIRE|__ATOMIC_HLE_ACQUIRE) != 0
      
          __atomic_store_n(&lock, 0, __ATOMIC_RELEASE|__ATOMIC_HLE_RELEASE);
           
-          sleep(rate);
+          usleep(rate);
           //need ending condition
      
      //shooterLock.unlock()
@@ -124,12 +126,21 @@ void Printer(int rate) {
    int lanenum = Gallery->Count();
    while(lanenum != coloredLanes)
    {
-       sleep(rate);
+       usleep(rate);
        Gallery->Print();
    }
 
 }
 
+
+static struct option long_options[] =
+  {
+    {"redrate", required_argument, 0, 'r'},
+    {"bluerate", required_argument, 0, 'b'},
+    {"rounds", required_argument, 0, 'n'},
+    {"lanes", required_argument, 0, 'l'},
+    {0, 0, 0, 0}
+  };
 
 
 int main(int argc, char** argv)
@@ -140,38 +151,78 @@ int main(int argc, char** argv)
     int numRounds = 1;
     int redRate;
     int blueRate;
+    double elapsed;
+    clock_t start, end;
+
     // get args from argv for redrate, bluerate, numRounds, lanes
+    while (true) {
+        int option_index = 0;
+        int c = getopt_long_only(argc, argv, "r:b:n:l:",
+                                 long_options, &option_index);
+        /* Detect the end of the options. */
+        if (c == -1)
+          break;
+
+        switch (c) {
+        case 0:
+          /* If this option set a flag, do nothing else now. */
+          break;
+
+        case 'r':
+          redShotsPerSec = atoi(optarg);
+          break;
+
+        case 'b':
+          blueShotsPerSec = atoi(optarg);
+          break;
+
+        case 'n':
+          numRounds = atoi(optarg);
+          break;
+
+        case 'l':
+          numlanes = atoi(optarg);
+          break;
+
+        case '?':
+          /* getopt_long already printed an error message. */
+          exit(1);
+          break;
+
+        default:
+          exit(1);
+        }
+
+    }
     if (redShotsPerSec <= 0) {
-         redRate = 1;    
+         redRate = 1;
     }
     else {
-         redRate = (int) (1000.0/(double) redShotsPerSec);
+         redRate = (int) (1000000.0/(double) redShotsPerSec);
     }
     if (blueShotsPerSec <= 0) {
          blueRate = 1;
     }
     else {
-         blueRate = (int) (1000.0/(double) blueShotsPerSec);
+         blueRate = (int) (1000000.0/(double) blueShotsPerSec);
     }
-
     Gallery = new Lanes(numlanes);
-    cout<<"making threads\n";
-    //    std::thread RedShooterT,BlueShooterT,CleanerT,PrinterT;
+
+    start = clock();
     std::thread CleanerT(&Cleaner);
-    std::thread PrinterT(&Printer, 1);
+    std::thread PrinterT(&Printer, 1000);
     std::thread RedShooterT(&ShooterAction,redRate,red);
     std::thread BlueShooterT(&ShooterAction,blueRate, blue);
 
-    cout<<"threads made\n";
-    sleep(20);
 
     // Join with threads
-    cout<<"joining threads\n";
     RedShooterT.join();
     BlueShooterT.join();
     CleanerT.join();
     PrinterT.join();
-
-
+    end = clock();
+    elapsed = (double) (end - start)/(CLOCKS_PER_SEC/1000);
+    cout<<"Elapsed time: "<<elapsed<<" ms\n";
     return 0;
 }
+
