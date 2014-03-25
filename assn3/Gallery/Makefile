@@ -31,20 +31,20 @@ RogueFineCleaner: RogueFineCleaner.o
 RogueFineCleaner.o: RogueFineCleaner.cpp
 	g++ -c -mrtm -std=c++11 -pthread $<
 
-course2: RogueCourse2
+coarse2: RogueCoarse2
 
-RogueCourse2: RogueCourse2.o
+RogueCoarse2: RogueCoarse2.o
 	g++ -mrtm -std=c++11 -pthread $< -o $@
 
-RogueCourse2.o: RogueCourse2.cpp
+RogueCoarse2.o: RogueCoarse2.cpp
 	g++ -c -mrtm -std=c++11 -pthread $<
 
-coursecleaner: RogueCourseCleaner
+coarsecleaner: RogueCoarseCleaner
 
-RogueCourseCleaner: RogueCourseCleaner.o
+RogueCoarseCleaner: RogueCoarseCleaner.o
 	g++ -mrtm -std=c++11 -pthread $< -o $@
 
-RogueCourseCleaner.o: RogueCourseCleaner.cpp
+RogueCoarseCleaner.o: RogueCoarseCleaner.cpp
 	g++ -c -mrtm -std=c++11 -pthread $<
 
 tm: RogueTM
