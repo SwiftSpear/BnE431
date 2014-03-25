@@ -73,4 +73,4 @@ RogueTMCleaner.o: RogueTMCleaner.cpp
 
 
 clean:
-	rm -rf *o Shooter RogueFine RogueFine2 RogueFineCleaner RogueCourse2 RogueCourseCleaner RogueTM RogueTM2 RogueTMCleaner
+	rm -rf *o Shooter RogueFine RogueFine2 RogueFineCleaner RogueCoarse2 RogueCoarseCleaner RogueTM RogueTM2 RogueTMCleaner

@@ -1,12 +1,12 @@
 #!/bin/bash
 # Script that runs test programs and saves results to a file
 
-lanes[0]=2500
-lanes[1]=5000
-lanes[2]=7500
-lanes[3]=10000
-lanes[4]=50000
-lanes[5]=100000
+lanes[0]=10
+lanes[1]=26
+lanes[2]=50
+lanes[3]=76
+lanes[4]=100
+lanes[5]=250
 lanes[6]=500
 lanes[7]=750
 lanes[8]=1000
@@ -19,7 +19,7 @@ lanes[14]=100000
 
 redRate=0
 blueRate=0
-trials=6
+trials=1
 executable="Shooter"
 if [ "$1" != "" ]; then
     executable="$1"
@@ -27,7 +27,7 @@ fi
 echo "TEST $executable: $lanes LANES, $redRate REDRATE, $blueRate BLUERATE" >> $executable+Results.txt 
 
 c=0
-while [ $c -le 5 ]
+while [ $c -le 14 ]
 do
     i=0
     while [ $i -le $trials ]

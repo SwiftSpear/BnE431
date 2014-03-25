@@ -72,7 +72,7 @@ while (__atomic_exchange_n(&lock, 1, __ATOMIC_ACQUIRE|__ATOMIC_HLE_ACQUIRE) != 0
 
           if(cleaner)
           {
-            Gallery->Print();
+            //Gallery->Print();
             //cout << "Cleaning" << endl;
             Gallery->Clear();
 

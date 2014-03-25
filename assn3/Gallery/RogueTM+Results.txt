@@ -1,0 +1,39 @@
+TEST RogueTM: 10 LANES, 0 REDRATE, 0 BLUERATE
+ 
+NUMBER LANES: 10
+Elapsed time: 0 ms
+ 
+NUMBER LANES: 10
+Elapsed time: 0 ms
+ 
+NUMBER LANES: 26
+Elapsed time: 0 ms
+ 
+NUMBER LANES: 26
+Elapsed time: 0 ms
+ 
+NUMBER LANES: 50
+Elapsed time: 0 ms
+ 
+NUMBER LANES: 50
+Elapsed time: 0 ms
+ 
+NUMBER LANES: 76
+Elapsed time: 0 ms
+ 
+NUMBER LANES: 76
+Elapsed time: 0 ms
+ 
+NUMBER LANES: 100
+Elapsed time: 0 ms
+ 
+NUMBER LANES: 100
+Elapsed time: 0 ms
+ 
+NUMBER LANES: 250
+Elapsed time: 0 ms
+ 
+NUMBER LANES: 250
+Elapsed time: 0 ms
+ 
+NUMBER LANES: 500
