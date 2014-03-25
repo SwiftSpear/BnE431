@@ -1,0 +1,39 @@
+#!/bin/bash
+# Script that runs test programs and saves results to a file
+
+lanes[0]=10
+lanes[1]=26
+lanes[2]=50
+lanes[3]=76
+lanes[4]=100
+lanes[5]=250
+lanes[6]=500
+lanes[7]=750
+lanes[8]=1000
+lanes[9]=2500
+lanes[10]=5000
+lanes[11]=7500
+lanes[12]=10000
+lanes[13]=50000
+lanes[14]=100000
+
+redRate=0
+blueRate=0
+trials=6
+executable="Shooter"
+
+echo "TEST $executable: $lanes LANES, $redRate REDRATE, $blueRate BLUERATE" >> $executable+Results.txt 
+
+c=0
+while [ $c -le 14 ]
+do
+    i=0
+    while [ $i -le $trials ]
+    do
+        echo " " >> $executable+Results.txt
+        echo "NUMBER LANES: ${lanes[$c]}" >> $executable+Results.txt
+        ./$executable -l ${lanes[$c]} -r $redRate -b $blueRate -p >> $executable+Results.txt
+        (( i++ ))
+    done
+    (( c++ ))
+done
