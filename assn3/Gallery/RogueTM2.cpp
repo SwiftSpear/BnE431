@@ -6,6 +6,7 @@
 #include "Lanes.h"
 #include <vector>
 #include <mutex>
+#include <immintrin.h>
 
 #include <time.h>
 #include <getopt.h>
@@ -13,7 +14,7 @@
 Lanes* Gallery;
 int nlanes;
 int coloredLanes = 0;
-std::mutex shooterLock;
+//std::mutex shooterLock;
 using namespace std;
 
 
@@ -28,19 +29,46 @@ void ShooterAction(int rate, Color PlayerColor) {
      *  Rate: Choose a random lane every 1/rate s.
      *  PlayerColor : Red/Blue.
      */
-     shooterLock.lock();
-     int lanenum = Gallery->Count();
+     
+       int lock;
+
+
+
+while (__atomic_exchange_n(&lock, 1, __ATOMIC_ACQUIRE|__ATOMIC_HLE_ACQUIRE) != 0) {
+
+  int val;
+ 
+
+  /* Wait for lock to become free again before retrying. */
+  do {
+
+    _mm_pause();
+
+    /* Abort speculation */
+
+  } while (val == 1);
+
+ int lanenum = Gallery->Count();
      //cout << "lanenum = " << lanenum << endl;
      while(coloredLanes != lanenum) {
           bool cleaner = true;
           
           int randLane = (rand() % (lanenum));
+          int randLane2 = (rand() % (lanenum));
+          while (randLane == randLane2){
+            randLane2 = (rand() % (lanenum));
+          }
+
           int color = Gallery->Get(randLane);
-          if (color == white) {
+          int color2 = Gallery->Get(randLane2);
+          
+          if (color == white && color2 == white) {
                Gallery->Set(randLane,PlayerColor);
-               ++coloredLanes; 
+               Gallery->Set(randLane2,PlayerColor);
+               coloredLanes = coloredLanes + 2;
                //cout<<"coloredLanes " << coloredLanes << endl;
           }
+          
           
           for (int i =0; i< lanenum; i++){
             if (Gallery->Get(i) == white)
@@ -53,10 +81,17 @@ void ShooterAction(int rate, Color PlayerColor) {
           if(cleaner)
           {
             //cout << "Cleaning" << endl;
+            Gallery->Print();
             Gallery->Clear();
 
             }
-          shooterLock.unlock();
+          
+
+ }
+
+
+     
+         __atomic_store_n(&lock, 0, __ATOMIC_RELEASE|__ATOMIC_HLE_RELEASE);
           
           usleep(rate);
           //need ending condition
@@ -97,6 +132,7 @@ void Printer(int rate) {
 
 }
 
+
 static struct option long_options[] =
   {
     {"redrate", required_argument, 0, 'r'},
@@ -110,7 +146,7 @@ static struct option long_options[] =
 
 int main(int argc, char** argv)
 {
-    int numlanes = 5;
+    int numlanes = 6;
     int redShotsPerSec = -1;
     int blueShotsPerSec = -1;
     int numRounds = 1;
@@ -128,24 +164,24 @@ int main(int argc, char** argv)
         /* Detect the end of the options. */
         if (c == -1)
           break;
-    
+
         switch (c) {
         case 0:
           /* If this option set a flag, do nothing else now. */
           break;
-    
+
         case 'r':
           redShotsPerSec = atoi(optarg);
           break;
-    
+
         case 'b':
           blueShotsPerSec = atoi(optarg);
           break;
-    
+
         case 'n':
           numRounds = atoi(optarg);
           break;
-    
+
         case 'l':
           numlanes = atoi(optarg);
           break;
@@ -153,19 +189,19 @@ int main(int argc, char** argv)
         case 'p':
           enablePrint = false;
           break;
-    
+
         case '?':
           /* getopt_long already printed an error message. */
           exit(1);
           break;
-    
+
         default:
           exit(1);
         }
 
     }
     if (redShotsPerSec <= 0) {
-         redRate = 1;    
+         redRate = 1;
     }
     else {
          redRate = (int) (1000000.0/(double) redShotsPerSec);
@@ -185,8 +221,8 @@ int main(int argc, char** argv)
         PrinterT = std::thread(&Printer, 1000);}
     std::thread RedShooterT(&ShooterAction,redRate,red);
     std::thread BlueShooterT(&ShooterAction,blueRate, blue);
-    
-    
+
+
     // Join with threads
     RedShooterT.join();
     BlueShooterT.join();

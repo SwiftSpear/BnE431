@@ -1,0 +1,201 @@
+TEST RogueCoarse2: 10 LANES, 0 REDRATE, 0 BLUERATE
+ 
+NUMBER LANES: 10
+Elapsed time: 0 ms
+ 
+NUMBER LANES: 10
+Elapsed time: 0 ms
+ 
+NUMBER LANES: 10
+Elapsed time: 0 ms
+ 
+NUMBER LANES: 10
+Elapsed time: 0 ms
+ 
+NUMBER LANES: 10
+Elapsed time: 0 ms
+ 
+NUMBER LANES: 10
+Elapsed time: 0 ms
+ 
+NUMBER LANES: 10
+Elapsed time: 0 ms
+ 
+NUMBER LANES: 26
+Elapsed time: 0 ms
+ 
+NUMBER LANES: 26
+Elapsed time: 0 ms
+ 
+NUMBER LANES: 26
+Elapsed time: 0 ms
+ 
+NUMBER LANES: 26
+Elapsed time: 0 ms
+ 
+NUMBER LANES: 26
+Elapsed time: 0 ms
+ 
+NUMBER LANES: 26
+Elapsed time: 0 ms
+ 
+NUMBER LANES: 26
+Elapsed time: 0 ms
+ 
+NUMBER LANES: 50
+Elapsed time: 0 ms
+ 
+NUMBER LANES: 50
+Elapsed time: 0 ms
+ 
+NUMBER LANES: 50
+Elapsed time: 0 ms
+ 
+NUMBER LANES: 50
+Elapsed time: 0 ms
+ 
+NUMBER LANES: 50
+Elapsed time: 0 ms
+ 
+NUMBER LANES: 50
+Elapsed time: 0 ms
+ 
+NUMBER LANES: 50
+Elapsed time: 0 ms
+ 
+NUMBER LANES: 76
+Elapsed time: 0 ms
+ 
+NUMBER LANES: 76
+Elapsed time: 0 ms
+ 
+NUMBER LANES: 76
+Elapsed time: 0 ms
+ 
+NUMBER LANES: 76
+Elapsed time: 0 ms
+ 
+NUMBER LANES: 76
+Elapsed time: 0 ms
+ 
+NUMBER LANES: 76
+Elapsed time: 0 ms
+ 
+NUMBER LANES: 76
+Elapsed time: 0 ms
+ 
+NUMBER LANES: 100
+Elapsed time: 0 ms
+ 
+NUMBER LANES: 100
+Elapsed time: 0 ms
+ 
+NUMBER LANES: 100
+Elapsed time: 0 ms
+ 
+NUMBER LANES: 100
+Elapsed time: 0 ms
+ 
+NUMBER LANES: 100
+Elapsed time: 0 ms
+ 
+NUMBER LANES: 100
+Elapsed time: 0 ms
+ 
+NUMBER LANES: 100
+Elapsed time: 0 ms
+ 
+NUMBER LANES: 250
+Elapsed time: 180 ms
+ 
+NUMBER LANES: 250
+Elapsed time: 180 ms
+ 
+NUMBER LANES: 250
+Elapsed time: 180 ms
+ 
+NUMBER LANES: 250
+Elapsed time: 200 ms
+ 
+NUMBER LANES: 250
+Elapsed time: 190 ms
+ 
+NUMBER LANES: 250
+Elapsed time: 170 ms
+ 
+NUMBER LANES: 250
+Elapsed time: 190 ms
+ 
+NUMBER LANES: 500
+Elapsed time: 160 ms
+ 
+NUMBER LANES: 500
+Elapsed time: 160 ms
+ 
+NUMBER LANES: 500
+Elapsed time: 160 ms
+ 
+NUMBER LANES: 500
+Elapsed time: 160 ms
+ 
+NUMBER LANES: 500
+Elapsed time: 160 ms
+ 
+NUMBER LANES: 500
+Elapsed time: 170 ms
+ 
+NUMBER LANES: 500
+Elapsed time: 160 ms
+ 
+NUMBER LANES: 750
+Elapsed time: 200 ms
+ 
+NUMBER LANES: 750
+Elapsed time: 530 ms
+ 
+NUMBER LANES: 750
+Elapsed time: 200 ms
+ 
+NUMBER LANES: 750
+Elapsed time: 190 ms
+ 
+NUMBER LANES: 750
+Elapsed time: 200 ms
+ 
+NUMBER LANES: 750
+Elapsed time: 200 ms
+ 
+NUMBER LANES: 750
+Elapsed time: 200 ms
+ 
+NUMBER LANES: 1000
+Elapsed time: 3770 ms
+ 
+NUMBER LANES: 1000
+Elapsed time: 3730 ms
+ 
+NUMBER LANES: 1000
+Elapsed time: 3560 ms
+ 
+NUMBER LANES: 1000
+Elapsed time: 3740 ms
+ 
+NUMBER LANES: 1000
+Elapsed time: 3620 ms
+ 
+NUMBER LANES: 1000
+Elapsed time: 3620 ms
+ 
+NUMBER LANES: 1000
+Elapsed time: 3600 ms
+ 
+NUMBER LANES: 2500
+Elapsed time: 23020 ms
+ 
+NUMBER LANES: 2500
+TEST RogueCoarse2: 2500 LANES, 0 REDRATE, 0 BLUERATE
+ 
+NUMBER LANES: 2500
+Elapsed time: 26720 ms
+ 
+NUMBER LANES: 2500

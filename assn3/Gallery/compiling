@@ -1,0 +1,1 @@
+g++ RogueTM.cpp -o Rogue -pthread -std=c++11

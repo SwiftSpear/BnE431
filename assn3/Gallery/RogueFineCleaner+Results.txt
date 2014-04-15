@@ -1,0 +1,316 @@
+TEST RogueFineCleaner: 10 LANES, 0 REDRATE, 0 BLUERATE
+ 
+NUMBER LANES: 10
+Elapsed time: 0 ms
+ 
+NUMBER LANES: 10
+Elapsed time: 0 ms
+ 
+NUMBER LANES: 10
+Elapsed time: 0 ms
+ 
+NUMBER LANES: 10
+Elapsed time: 0 ms
+ 
+NUMBER LANES: 10
+Elapsed time: 0 ms
+ 
+NUMBER LANES: 10
+Elapsed time: 0 ms
+ 
+NUMBER LANES: 10
+Elapsed time: 0 ms
+ 
+NUMBER LANES: 26
+Elapsed time: 0 ms
+ 
+NUMBER LANES: 26
+Elapsed time: 0 ms
+ 
+NUMBER LANES: 26
+Elapsed time: 0 ms
+ 
+NUMBER LANES: 26
+Elapsed time: 0 ms
+ 
+NUMBER LANES: 26
+Elapsed time: 0 ms
+ 
+NUMBER LANES: 26
+Elapsed time: 0 ms
+ 
+NUMBER LANES: 26
+Elapsed time: 0 ms
+ 
+NUMBER LANES: 50
+Elapsed time: 0 ms
+ 
+NUMBER LANES: 50
+Elapsed time: 0 ms
+ 
+NUMBER LANES: 50
+Elapsed time: 0 ms
+ 
+NUMBER LANES: 50
+Elapsed time: 0 ms
+ 
+NUMBER LANES: 50
+Elapsed time: 0 ms
+ 
+NUMBER LANES: 50
+Elapsed time: 0 ms
+ 
+NUMBER LANES: 50
+Elapsed time: 0 ms
+ 
+NUMBER LANES: 76
+Elapsed time: 0 ms
+ 
+NUMBER LANES: 76
+Elapsed time: 0 ms
+ 
+NUMBER LANES: 76
+Elapsed time: 0 ms
+ 
+NUMBER LANES: 76
+Elapsed time: 0 ms
+ 
+NUMBER LANES: 76
+Elapsed time: 0 ms
+ 
+NUMBER LANES: 76
+Elapsed time: 0 ms
+ 
+NUMBER LANES: 76
+Elapsed time: 0 ms
+ 
+NUMBER LANES: 100
+Elapsed time: 10 ms
+ 
+NUMBER LANES: 100
+Elapsed time: 10 ms
+ 
+NUMBER LANES: 100
+Elapsed time: 0 ms
+ 
+NUMBER LANES: 100
+Elapsed time: 10 ms
+ 
+NUMBER LANES: 100
+Elapsed time: 10 ms
+ 
+NUMBER LANES: 100
+Elapsed time: 10 ms
+ 
+NUMBER LANES: 100
+Elapsed time: 10 ms
+ 
+NUMBER LANES: 250
+Elapsed time: 40 ms
+ 
+NUMBER LANES: 250
+Elapsed time: 30 ms
+ 
+NUMBER LANES: 250
+Elapsed time: 40 ms
+ 
+NUMBER LANES: 250
+Elapsed time: 40 ms
+ 
+NUMBER LANES: 250
+Elapsed time: 40 ms
+ 
+NUMBER LANES: 250
+Elapsed time: 40 ms
+ 
+NUMBER LANES: 250
+Elapsed time: 40 ms
+ 
+NUMBER LANES: 500
+Elapsed time: 70 ms
+ 
+NUMBER LANES: 500
+Elapsed time: 70 ms
+ 
+NUMBER LANES: 500
+Elapsed time: 70 ms
+ 
+NUMBER LANES: 500
+Elapsed time: 70 ms
+ 
+NUMBER LANES: 500
+Elapsed time: 70 ms
+ 
+NUMBER LANES: 500
+Elapsed time: 70 ms
+ 
+NUMBER LANES: 500
+Elapsed time: 70 ms
+ 
+NUMBER LANES: 750
+Elapsed time: 130 ms
+ 
+NUMBER LANES: 750
+Elapsed time: 120 ms
+ 
+NUMBER LANES: 750
+Elapsed time: 130 ms
+ 
+NUMBER LANES: 750
+Elapsed time: 130 ms
+ 
+NUMBER LANES: 750
+Elapsed time: 130 ms
+ 
+NUMBER LANES: 750
+Elapsed time: 130 ms
+ 
+NUMBER LANES: 750
+Elapsed time: 130 ms
+ 
+NUMBER LANES: 1000
+Elapsed time: 260 ms
+ 
+NUMBER LANES: 1000
+Elapsed time: 260 ms
+ 
+NUMBER LANES: 1000
+Elapsed time: 260 ms
+ 
+NUMBER LANES: 1000
+Elapsed time: 260 ms
+ 
+NUMBER LANES: 1000
+Elapsed time: 260 ms
+ 
+NUMBER LANES: 1000
+Elapsed time: 260 ms
+ 
+NUMBER LANES: 1000
+Elapsed time: 260 ms
+ 
+NUMBER LANES: 2500
+Elapsed time: 650 ms
+ 
+NUMBER LANES: 2500
+Elapsed time: 640 ms
+ 
+NUMBER LANES: 2500
+Elapsed time: 650 ms
+ 
+NUMBER LANES: 2500
+Elapsed time: 650 ms
+ 
+NUMBER LANES: 2500
+Elapsed time: 650 ms
+ 
+NUMBER LANES: 2500
+Elapsed time: 650 ms
+ 
+NUMBER LANES: 2500
+Elapsed time: 650 ms
+ 
+NUMBER LANES: 5000
+Elapsed time: 1410 ms
+ 
+NUMBER LANES: 5000
+Elapsed time: 1430 ms
+ 
+NUMBER LANES: 5000
+Elapsed time: 1430 ms
+ 
+NUMBER LANES: 5000
+Elapsed time: 1430 ms
+ 
+NUMBER LANES: 5000
+Elapsed time: 1430 ms
+ 
+NUMBER LANES: 5000
+Elapsed time: 1430 ms
+ 
+NUMBER LANES: 5000
+Elapsed time: 1430 ms
+ 
+NUMBER LANES: 7500
+Elapsed time: 1500 ms
+ 
+NUMBER LANES: 7500
+Elapsed time: 1500 ms
+ 
+NUMBER LANES: 7500
+Elapsed time: 1500 ms
+ 
+NUMBER LANES: 7500
+Elapsed time: 1500 ms
+ 
+NUMBER LANES: 7500
+Elapsed time: 1500 ms
+ 
+NUMBER LANES: 7500
+Elapsed time: 1500 ms
+ 
+NUMBER LANES: 7500
+Elapsed time: 1500 ms
+ 
+NUMBER LANES: 10000
+Elapsed time: 2440 ms
+ 
+NUMBER LANES: 10000
+Elapsed time: 2440 ms
+ 
+NUMBER LANES: 10000
+Elapsed time: 2450 ms
+ 
+NUMBER LANES: 10000
+Elapsed time: 2440 ms
+ 
+NUMBER LANES: 10000
+Elapsed time: 2440 ms
+ 
+NUMBER LANES: 10000
+Elapsed time: 2440 ms
+ 
+NUMBER LANES: 10000
+Elapsed time: 2440 ms
+ 
+NUMBER LANES: 50000
+Elapsed time: 15860 ms
+ 
+NUMBER LANES: 50000
+Elapsed time: 15850 ms
+ 
+NUMBER LANES: 50000
+Elapsed time: 15860 ms
+ 
+NUMBER LANES: 50000
+Elapsed time: 15860 ms
+ 
+NUMBER LANES: 50000
+Elapsed time: 15900 ms
+ 
+NUMBER LANES: 50000
+Elapsed time: 15850 ms
+ 
+NUMBER LANES: 50000
+Elapsed time: 15850 ms
+ 
+NUMBER LANES: 100000
+Elapsed time: 32190 ms
+ 
+NUMBER LANES: 100000
+Elapsed time: 32200 ms
+ 
+NUMBER LANES: 100000
+Elapsed time: 32180 ms
+ 
+NUMBER LANES: 100000
+Elapsed time: 32170 ms
+ 
+NUMBER LANES: 100000
+Elapsed time: 32210 ms
+ 
+NUMBER LANES: 100000
+Elapsed time: 32210 ms
+ 
+NUMBER LANES: 100000
+Elapsed time: 32190 ms

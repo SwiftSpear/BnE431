@@ -28,7 +28,7 @@ void ShooterAction(int rate, Color PlayerColor) {
      *  Rate: Choose a random lane every 1/rate s.
      *  PlayerColor : Red/Blue.
      */
-     shooterLock.lock();
+     
      int lanenum = Gallery->Count();
      //cout << "lanenum = " << lanenum << endl;
      while(coloredLanes != lanenum) {
@@ -36,11 +36,13 @@ void ShooterAction(int rate, Color PlayerColor) {
           
           int randLane = (rand() % (lanenum));
           int color = Gallery->Get(randLane);
+          shooterLock.lock();
           if (color == white) {
                Gallery->Set(randLane,PlayerColor);
                ++coloredLanes; 
                //cout<<"coloredLanes " << coloredLanes << endl;
           }
+          
           
           for (int i =0; i< lanenum; i++){
             if (Gallery->Get(i) == white)
@@ -128,24 +130,24 @@ int main(int argc, char** argv)
         /* Detect the end of the options. */
         if (c == -1)
           break;
-    
+
         switch (c) {
         case 0:
           /* If this option set a flag, do nothing else now. */
           break;
-    
+
         case 'r':
           redShotsPerSec = atoi(optarg);
           break;
-    
+
         case 'b':
           blueShotsPerSec = atoi(optarg);
           break;
-    
+
         case 'n':
           numRounds = atoi(optarg);
           break;
-    
+
         case 'l':
           numlanes = atoi(optarg);
           break;
@@ -153,19 +155,19 @@ int main(int argc, char** argv)
         case 'p':
           enablePrint = false;
           break;
-    
+
         case '?':
           /* getopt_long already printed an error message. */
           exit(1);
           break;
-    
+
         default:
           exit(1);
         }
 
     }
     if (redShotsPerSec <= 0) {
-         redRate = 1;    
+         redRate = 1;
     }
     else {
          redRate = (int) (1000000.0/(double) redShotsPerSec);
@@ -185,8 +187,8 @@ int main(int argc, char** argv)
         PrinterT = std::thread(&Printer, 1000);}
     std::thread RedShooterT(&ShooterAction,redRate,red);
     std::thread BlueShooterT(&ShooterAction,blueRate, blue);
-    
-    
+
+
     // Join with threads
     RedShooterT.join();
     BlueShooterT.join();
