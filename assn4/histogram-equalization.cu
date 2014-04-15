@@ -50,5 +50,13 @@ void histogram_equalization(unsigned char * img_out, unsigned char * img_in,
     }
 }
 
+__global__ static void histogram_gpu(int * hist_out, unsigned char * img_in, int img_size, int nbr_bin){
+    int i;
+    const int bid = blockIdx.x;
+    const int tid = threadIdx.x;
 
+    for (i = bid*THREAD_NUM + tid; i < img_size; i+= BLOCK_NUM*THREAD_NUM){
+        hist_out[img_in[i]]++;
+    }
+}
 
