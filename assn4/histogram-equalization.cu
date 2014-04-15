@@ -3,7 +3,8 @@
 #include <stdlib.h>
 #include "hist-equ.h"
 
-
+#define BLOCK_NUM 256
+#define THREAD_NUM 256
 void histogram(int * hist_out, unsigned char * img_in, int img_size, int nbr_bin){
     int i;
     for ( i = 0; i < nbr_bin; i ++){
