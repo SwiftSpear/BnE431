@@ -1,8 +1,9 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
-#include <helpers*.h>
 #include <cuda_runtime.h>
+#include <helper_cuda.h>
+#include <helper_functions.h>
 #include "hist-equ.h"
 
 void run_cpu_color_test(PPM_IMG img_in);
@@ -46,26 +47,32 @@ void run_gpu_gray_test(PGM_IMG img_in)
 
 void run_cpu_color_test(PPM_IMG img_in)
 {
-    unsigned int timer = 0;
+    float time = 99999.99999;
+    float time2 = 99999.99999;
+    cudaEvent_t start, stop, start2, stop2; 
     PPM_IMG img_obuf_hsl, img_obuf_yuv;
     
     printf("Starting CPU processing...\n");
-    
-    cutilCheckError(cutCreateTimer(&timer));
-    cutilCheckError(cutStartTimer(timer));
+
+    checkCudaErrors(cudaEventCreate(&start));
+    checkCudaErrors(cudaEventCreate(&stop));
+    checkCudaErrors(cudaEventRecord(start, 0));
     img_obuf_hsl = contrast_enhancement_c_hsl(img_in);
-    cutilCheckError(cutStopTimer(timer));
-    printf("HSL processing time: %f (ms)\n", cutGetTimerValue(timer));
-    cutilCheckError(cutDeleteTimer(timer));
+    checkCudaErrors(cudaEventRecord(stop, 0));
+    checkCudaErrors(cudaEventSynchronize(stop));
+    checkCudaErrors(cudaEventElapsedTime(&time, start, stop));
+    printf("HSL processing time: %f (ms)\n", time);
     
     write_ppm(img_obuf_hsl, "out_hsl.ppm");
 
-    cutilCheckError(cutCreateTimer(&timer));
-    cutilCheckError(cutStartTimer(timer));
+    checkCudaErrors(cudaEventCreate(&start2));
+    checkCudaErrors(cudaEventCreate(&stop2));
+    checkCudaErrors(cudaEventRecord(start2, 0));
     img_obuf_yuv = contrast_enhancement_c_yuv(img_in);
-    cutilCheckError(cutStopTimer(timer));
-    printf("YUV processing time: %f (ms)\n", cutGetTimerValue(timer));
-    cutilCheckError(cutDeleteTimer(timer));
+    checkCudaErrors(cudaEventRecord(stop2, 0));
+    checkCudaErrors(cudaEventSynchronize(stop2));
+    checkCudaErrors(cudaEventElapsedTime(&time2, start2, stop2));
+    printf("YUV processing time: %f (ms)\n", time2);
     
     write_ppm(img_obuf_yuv, "out_yuv.ppm");
     
@@ -78,18 +85,21 @@ void run_cpu_color_test(PPM_IMG img_in)
 
 void run_cpu_gray_test(PGM_IMG img_in)
 {
-    unsigned int timer = 0;
+    cudaEvent_t start, stop;
+    float time = 99999.99999;
     PGM_IMG img_obuf;
     
     
     printf("Starting CPU processing...\n");
     
-    cutilCheckError(cutCreateTimer(&timer));
-    cutilCheckError(cutStartTimer(timer));
+    checkCudaErrors(cudaEventCreate(&start));
+    checkCudaErrors(cudaEventCreate(&stop));
+    checkCudaErrors(cudaEventRecord(start, 0));
     img_obuf = contrast_enhancement_g(img_in);
-    cutilCheckError(cutStopTimer(timer));
-    printf("Processing time: %f (ms)\n", cutGetTimerValue(timer));
-    cutilCheckError(cutDeleteTimer(timer));
+    checkCudaErrors(cudaEventRecord(stop, 0));
+    checkCudaErrors(cudaEventSynchronize(stop));
+    checkCudaErrors(cudaEventElapsedTime(&time, start, stop));
+    printf("Processing time: %f (ms)\n", time);
     
     write_pgm(img_obuf, "out.pgm");
     free_pgm(img_obuf);
