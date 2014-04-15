@@ -43,4 +43,22 @@ CCFILES		:= main.cpp histogram-equalization.cpp contrast-enhancement.cpp
 ################################################################################
 # Rules and targets
 
-include ../../common/common.mk
+LIBS := -I/usr/local/cuda/samples/common/inc -L/usr/local/cuda/samples/common/lib
+NVCC := /usr/local/cuda/bin/nvcc
+
+all: a.out
+
+histogram-equalization.o: histogram-equalization.cu
+	$(NVCC) -arch=sm_20 $(LIBS) -o $@ -c $<
+contrast-enhancement.o: contrast-enhancement.cu
+	$(NVCC) -arch=sm_20 $(LIBS) -o $@ -c $<
+main.o: main.cpp
+	$(NVCC) -arch=sm_20 $(LIBS) -o $@ -c $<
+
+a.out: contrast-enhancement.o histogram-equalization.o main.o
+	$(NVCC) -lcudart $(LIBS) -o $@ $+
+
+clean:
+	rm -f a.out *.o
+
+#include ../../common/common.mk
