@@ -7,11 +7,11 @@
 void histogram(int * hist_out, unsigned char * img_in, int img_size, int nbr_bin){
     int i;
     for ( i = 0; i < nbr_bin; i ++){
-        hist_out[i] = 0;
+        hist_out[i] = 0; //construct an array with one entry for each color grey
     }
 
     for ( i = 0; i < img_size; i ++){
-        hist_out[img_in[i]] ++;
+        hist_out[img_in[i]] ++; //fill array with counts of pixels of that color in image
     }
 }
 
@@ -24,7 +24,7 @@ void histogram_equalization(unsigned char * img_out, unsigned char * img_in,
     min = 0;
     i = 0;
     while(min == 0){
-        min = hist_in[i++];
+        min = hist_in[i++]; //find the number of darkest pixels in the image
     }
     d = img_size - min;
     for(i = 0; i < nbr_bin; i ++){
