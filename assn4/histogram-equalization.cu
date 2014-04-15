@@ -52,12 +52,20 @@ void histogram_equalization(unsigned char * img_out, unsigned char * img_in,
 }
 
 __global__ static void histogram_gpu(int * hist_out, unsigned char * img_in, int img_size, int nbr_bin){
-    int i;
-    const int bid = blockIdx.x;
-    const int tid = threadIdx.x;
+    
+    __shared__ unsigned int temp[256];
+    temp[threadIdx.x]=0;
+    __syncthreads();
 
-    for (i = bid*THREAD_NUM + tid; i < img_size; i+= BLOCK_NUM*THREAD_NUM){
-        hist_out[img_in[i]]++;
+    int i = blockIdx.x * blockDim.x + threadIdx.x;
+    int offset = blockDim.x * gridDim.x;
+
+    while(i < img_size){
+            atomicAdd(&temp[img_in[i]],1);
+            i += offset;
     }
-}
+
+    __syncthreads();
+    atomicAdd(&(hist_out[threadIdx.x]), temp[threadIdx.x]);
+    }
 
