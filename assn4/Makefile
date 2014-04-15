@@ -43,7 +43,7 @@ CCFILES		:= main.cpp histogram-equalization.cpp contrast-enhancement.cpp
 ################################################################################
 # Rules and targets
 
-LIBS := -I/usr/local/cuda/samples/common/inc -L/usr/local/cuda/samples/common/lib
+LIBS := -I /usr/local/cuda/samples/common/inc -L /usr/local/cuda/samples/common/lib
 NVCC := /usr/local/cuda/bin/nvcc
 
 all: a.out
