@@ -54,7 +54,15 @@ void histogram_equalization(unsigned char * img_out, unsigned char * img_in,
 __global__ void histogram_gpu(int * hist_out, unsigned char * img_in, int img_size, int nbr_bin){
     
     int id =  threadIdx.x;
-    atomicAdd(&hist_out[img_in[id]],1);
+    if (id >= img_size)
+    {
+        return;
+    }
+
+    unsigned char value = img_in[id];
+
+    int bin = value % nbr_bin;
+    atomicAdd(&hist_out[img_in[bin]],1);
 }
 
 /*__global__ void histogram_image_compile_gpu(unsigned char * img_out, unsigned char * img_in,
