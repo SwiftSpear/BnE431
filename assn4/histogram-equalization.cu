@@ -51,7 +51,7 @@ void histogram_equalization(unsigned char * img_out, unsigned char * img_in,
     }
 }
 
-__device__ void histogram_gpu(int * hist_out, unsigned char * img_in, int img_size, int nbr_bin){
+__global__ void histogram_gpu(int * hist_out, unsigned char * img_in, int img_size, int nbr_bin){
     
     __shared__ unsigned int temp[256];
     temp[threadIdx.x]=0;
@@ -68,7 +68,7 @@ __device__ void histogram_gpu(int * hist_out, unsigned char * img_in, int img_si
     atomicAdd(&(hist_out[threadIdx.x]), temp[threadIdx.x]);
 }
 
-__global__ void histogram_image_compile_gpu(unsigned char * img_out, unsigned char * img_in,
+/*__global__ void histogram_image_compile_gpu(unsigned char * img_out, unsigned char * img_in,
                             int * lut, int image_size, int nbr_bin) {
         __shared__ unsigned int memlut[255];
      
@@ -96,10 +96,10 @@ __host__ static void histogram_equalization_gpu(unsigned char * img_out, unsigne
                             int * hist_in, int img_size, int nbr_bin){
     /* Calculating the lut doesn't really make sense as a massively parallel thing, as it's only going through a maximum of 255 steps
     so lets only cudaize the result image formation step	*/
-    unsigned int lut[nbr_bin] //look up table, same size as hist
+    /*unsigned int lut[nbr_bin] //look up table, same size as hist
     int i, cdf, min, d;
     /* Construct the LUT by calculating the CDF */
-    cdf = 0;
+    /*cdf = 0;
     min = 0;
     i = 0;
     while(min == 0){
@@ -122,5 +122,5 @@ __host__ static void histogram_equalization_gpu(unsigned char * img_out, unsigne
 	
 	//histogram_image_compile_gpu(img_out, img_in, lut, img_size, nbr_bin);
     
-}
+//}
 

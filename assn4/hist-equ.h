@@ -52,7 +52,7 @@ PPM_IMG yuv2rgb(YUV_IMG img_in);
 void histogram(int * hist_out, unsigned char * img_in, int img_size, int nbr_bin);
 void histogram_equalization(unsigned char * img_out, unsigned char * img_in, 
                             int * hist_in, int img_size, int nbr_bin);
-__device__ void histogram_gpu(int * hist_out, unsigned char * img_in, int img_size, int nbr_bin);
+__global__ void histogram_gpu(int * hist_out, unsigned char * img_in, int img_size, int nbr_bin);
 
 
 //Contrast enhancement for gray-scale images
