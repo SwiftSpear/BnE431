@@ -53,16 +53,28 @@ void histogram_equalization(unsigned char * img_out, unsigned char * img_in,
 
 __global__ void histogram_gpu(int * hist_out, unsigned char * img_in, int img_size, int nbr_bin){
     
+    __shared__ int temp[256];
+
+    temp[threadIdx.x] = 0;
+    __syncthreads();
+
     int id =  blockIdx.x * blockDim.x + threadIdx.x;
+    int offset = blockDim.x * gridDim.x
     if (id >= img_size)
     {
         return;
     }
 
-    unsigned char value = img_in[id];
+    while (id < img_size){
+        atomicAdd(&temp[img_in[id]],1);
+        i+= offset;
+    }
+    __syncthreads();
 
-    int bin = value % nbr_bin;
-    atomicAdd(&hist_out[img_in[bin]],1);
+    //unsigned char value = img_in[id];
+
+    //int bin = value % nbr_bin;
+    atomicAdd(&(hist_out[threadIdx.x]), temp[threadIdx.x]);
 }
 
 void getHist(int * hist_out, unsigned char* img_in, int img_size, int nbr_bin){
