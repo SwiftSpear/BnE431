@@ -135,7 +135,27 @@ __host__ static void histogram_equalization_gpu(unsigned char * img_out, unsigne
             lut[i] = 0;
         }
     }    
-       
+    unsigned char * dArray;
+    cudaMalloc(&dArray, img_size);
+    cudaMemcpy(dArray, img_in, img_size,cudaMemcpyHostToDevice);
+
+    int * dArrayOut;
+    cudaMalloc(&dArrayOut, img_size);
+    cudaMemset(dArrayOut,0, img_size);
+
+    int * dLUT;
+    cudaMallock(&dLUT, nbr_bin);
+    cudaMemset(dLUT, lut, nbr_bin, cudaMemcpyHostToDevice);
+
+    dim3 block(32);
+    dim3 grid((img_size + block.x - 1)/block.x);
+
+    histogram_image_compile_gpu<<<grid,block>>>(dArrayOut,dArray,dLUT,img_size,nbr_bin);
+
+    cudaMemcpy(img_out,dArrayOut, img_size * sizeof(int), cudaMemcpyDeviceToHost);
+    cudaFree(dArray);
+    cudaFree(dArrayOut);
+    cudaFree(dLUT); 
 
 	
 	/* Get the result image*/
