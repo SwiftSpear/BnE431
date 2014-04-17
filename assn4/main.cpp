@@ -36,9 +36,37 @@ int main(){
 
 void run_gpu_color_test(PPM_IMG img_in)
 {
+    float time = 99999.99999;
+    float time2 = 99999.99999;
+    cudaEvent_t start, stop, start2, stop2; 
+    PPM_IMG img_obuf_hsl, img_obuf_yuv;
+    
     printf("Starting GPU processing...\n");
-    //TODO: run your GPU implementation here
-    img_in = img_in; // To avoid warning...
+
+    checkCudaErrors(cudaEventCreate(&start));
+    checkCudaErrors(cudaEventCreate(&stop));
+    checkCudaErrors(cudaEventRecord(start, 0));
+    img_obuf_hsl = contrast_enhancement_c_hsl_gpu(img_in);
+    checkCudaErrors(cudaEventRecord(stop, 0));
+    checkCudaErrors(cudaEventSynchronize(stop));
+    checkCudaErrors(cudaEventElapsedTime(&time, start, stop));
+    printf("HSL processing time: %f (ms)\n", time);
+    
+    write_ppm(img_obuf_hsl, "out_hsl.ppm");
+
+    checkCudaErrors(cudaEventCreate(&start2));
+    checkCudaErrors(cudaEventCreate(&stop2));
+    checkCudaErrors(cudaEventRecord(start2, 0));
+    img_obuf_yuv = contrast_enhancement_c_yuv_gpu(img_in);
+    checkCudaErrors(cudaEventRecord(stop2, 0));
+    checkCudaErrors(cudaEventSynchronize(stop2));
+    checkCudaErrors(cudaEventElapsedTime(&time2, start2, stop2));
+    printf("YUV processing time: %f (ms)\n", time2);
+    
+    write_ppm(img_obuf_yuv, "out_yuv.ppm");
+    
+    free_ppm(img_obuf_hsl);
+    free_ppm(img_obuf_yuv);
 }
 
 void run_gpu_gray_test(PGM_IMG img_in)
@@ -48,7 +76,7 @@ void run_gpu_gray_test(PGM_IMG img_in)
     PGM_IMG img_obuf;
     
     
-    printf("Starting CPU processing...\n");
+    printf("Starting GPU processing...\n");
     
     checkCudaErrors(cudaEventCreate(&start));
     checkCudaErrors(cudaEventCreate(&stop));

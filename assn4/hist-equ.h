@@ -65,6 +65,10 @@ void getHist(int * hist_out, unsigned char* img_in, int img_size, int nbr_bin);
 PPM_IMG contrast_enhancement_c_rgb(PPM_IMG img_in);
 PPM_IMG contrast_enhancement_c_yuv(PPM_IMG img_in);
 PPM_IMG contrast_enhancement_c_hsl(PPM_IMG img_in);
+PPM_IMG contrast_enhancement_c_rgb_gpu(PPM_IMG img_in);
+PPM_IMG contrast_enhancement_c_yuv_gpu(PPM_IMG img_in);
+PPM_IMG contrast_enhancement_c_hsl_gpu(PPM_IMG img_in);
+
 
 
 #endif
