@@ -67,13 +67,37 @@ __global__ static void histogram_gpu(int * hist_out, unsigned char * img_in, int
 
     __syncthreads();
     atomicAdd(&(hist_out[threadIdx.x]), temp[threadIdx.x]);
-    }
+}
+
+__global__ void histogram_image_compile_gpu(unsigned char * img_out, unsigned char * img_in,
+                            int * lut, int image_size, int nbr_bin) {
+        __shared__ unsigned int memlut[255];
+     
+        for(int i = 0; i < 255; i++){
+            memlut[i] = lut[i]; //don't know if pointer is correct but I want a local copy of lut
+        }
+        int chunk_size = blockIdx.x; //need code here, we need to split the image array into local parts to run high performance calcs on
+        int offset = image_size/blockIdx.x; //when getting a chunk of the in image, or writing a chunk to the out image, offset+i should map to the correct location
+        __shared__ unsigned int local_img[9999]; //create a local version of a segment of the image to work against so the whole image isn't stored in gpu memory per core
+        for(int i = 0; i < chunk_size; i ++) {
+           local_img[i] = img_in[offset+i];
+        }
+        __syncthreads();
+        for(int i = 0; i < chunk_size; i++) {
+           local_img[i] = lut[local_img[i]];
+        }
+        __syncthreads();
+        for(int i = 0; i < chunk_size; i++) {
+       img_out[offset+i] = local_img[i];
+       }
+}
+
 
 __host__ static void histogram_equalization_gpu(unsigned char * img_out, unsigned char * img_in, 
                             int * hist_in, int img_size, int nbr_bin){
     /* Calculating the lut doesn't really make sense as a massively parallel thing, as it's only going through a maximum of 255 steps
     so lets only cudaize the result image formation step	*/
-    unsigned int lut[nbr_bin] //look up table, same size as hist
+    unsigned int lut[nbr_bin]; //look up table, same size as hist
     int i, cdf, min, d;
     /* Construct the LUT by calculating the CDF */
     cdf = 0;
@@ -90,32 +114,14 @@ __host__ static void histogram_equalization_gpu(unsigned char * img_out, unsigne
         if(lut[i] < 0){
             lut[i] = 0;
         }
+    }    
         
-        
-    }
+
 	
 	/* Get the result image */
 	
-	histogram_image_compile_gpu(img_out, img_in, lut, img_size, nbr_bin);
+    //	histogram_image_compile_gpu(img_out, img_in, lut, img_size, nbr_bin);
     
 }
 
-__global__ histogram_image_compile_gpu(unsigned char * img_out, unsigned char * img_in, 
-                            int * lut, int image_size, int nbr_bin) {
-	__shared__ unsigned int memlut[256];
-    memlut = lut; //don't know if pointer is correct but I want a local copy of lut
-	int chunk_size = blockIdx.x //need code here, we need to split the image array into local parts to run high performance calcs on
-	int offset = image_size/blockIdx.x //when getting a chunk of the in image, or writing a chunk to the out image, offset+i should map to the correct location 
-	__shared__ unsigned int local_img[chunk_size]; //create a local version of a segment of the image to work against so the whole image isn't stored in gpu memory per core
-	for(i = 0; i < chunk_size; i ++) {
-	   local_img[i] = img_in[offset+i];
-	}
-	__syncthreads();
-    for(i = 0; i < chunk_size; i++) {
-	   local_img[i] = lut[local_img[i]];
-	}
-	__syncthreads();
-	for(i = 0; i < chunk_size; i++) {
-       img_out[offset+i] = local_img[i];
-    }	
-}
+
