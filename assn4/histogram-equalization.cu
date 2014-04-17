@@ -53,7 +53,7 @@ void histogram_equalization(unsigned char * img_out, unsigned char * img_in,
 
 __global__ void histogram_gpu(int * hist_out, unsigned char * img_in, int img_size, int nbr_bin){
     
-    int id = blockIdx.x * blockDim.x + threadIdx.x;
+    int id =  threadIdx.x;
     atomicAdd(&hist_out[img_in[id]],1);
 }
 

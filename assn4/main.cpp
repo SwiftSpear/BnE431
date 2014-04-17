@@ -53,14 +53,12 @@ void run_gpu_gray_test(PGM_IMG img_in)
     checkCudaErrors(cudaEventCreate(&start));
     checkCudaErrors(cudaEventCreate(&stop));
     checkCudaErrors(cudaEventRecord(start, 0));
-    img_obuf = contrast_enhancement_g_gpu(img_in);
+    histotest(img_in);
     checkCudaErrors(cudaEventRecord(stop, 0));
     checkCudaErrors(cudaEventSynchronize(stop));
     checkCudaErrors(cudaEventElapsedTime(&time, start, stop));
     printf("Processing time: %f (ms)\n", time);
-    
-    write_pgm(img_obuf, "out.pgm");
-    free_pgm(img_obuf);
+
 }
 
 void run_cpu_color_test(PPM_IMG img_in)

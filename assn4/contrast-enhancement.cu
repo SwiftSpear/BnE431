@@ -17,7 +17,7 @@ PGM_IMG contrast_enhancement_g(PGM_IMG img_in)
     return result;
 }
 
-PGM_IMG contrast_enhancement_g_gpu(PGM_IMG img_in)
+/*PGM_IMG contrast_enhancement_g_gpu(PGM_IMG img_in)
 {
     PGM_IMG result;
     int hist[256];
@@ -26,9 +26,20 @@ PGM_IMG contrast_enhancement_g_gpu(PGM_IMG img_in)
     result.h = img_in.h;
     result.img = (unsigned char *)malloc(result.w * result.h * sizeof(unsigned char));
     
-    histogram_gpu<<<256,256>>>(hist, img_in.img, img_in.h * img_in.w, 256);
+    histogram_gpu<<<1,256>>>(hist, img_in.img, img_in.h * img_in.w, 256);
     histogram_equalization(result.img,img_in.img,hist,result.w*result.h, 256);
     return result;
+}*/
+
+void histotest(PGM_IMG img_in)
+{
+    PGM_IMG result;
+    int hist[256];
+    
+    result.w = img_in.w;
+    result.h = img_in.h;
+    result.img = (unsigned char *)malloc(result.w * result.h * sizeof(unsigned char));
+    histogram_gpu<<<1,512>>>(hist, img_in.img, img_in.h * img_in.w, 256);
 }
 PPM_IMG contrast_enhancement_c_rgb(PPM_IMG img_in)
 {
