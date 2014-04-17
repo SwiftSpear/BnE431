@@ -53,19 +53,8 @@ void histogram_equalization(unsigned char * img_out, unsigned char * img_in,
 
 __global__ void histogram_gpu(int * hist_out, unsigned char * img_in, int img_size, int nbr_bin){
     
-    __shared__ unsigned int temp[256];
-    temp[threadIdx.x]=0;
-    __syncthreads();
-    int i = blockIdx.x * blockDim.x + threadIdx.x;
-    int offset = blockDim.x * gridDim.x;
-
-    while(i < img_size){
-            atomicAdd(&temp[img_in[i]],1);
-            i += offset;
-    }
-
-    __syncthreads();
-    atomicAdd(&(hist_out[threadIdx.x]), temp[threadIdx.x]);
+    int id = blockIdx.x * blockDim.x + threadIdx.x;
+    atomicAdd(&hist_out[img_in[id]],1);
 }
 
 /*__global__ void histogram_image_compile_gpu(unsigned char * img_out, unsigned char * img_in,
