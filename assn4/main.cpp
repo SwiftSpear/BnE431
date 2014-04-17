@@ -27,6 +27,9 @@ int main(){
     run_cpu_color_test(img_ibuf_c);
     run_gpu_color_test(img_ibuf_c);
     free_ppm(img_ibuf_c);
+
+    printf("Running histogram\n");
+
     
     return 0;
 }
@@ -40,9 +43,24 @@ void run_gpu_color_test(PPM_IMG img_in)
 
 void run_gpu_gray_test(PGM_IMG img_in)
 {
+    cudaEvent_t start, stop;
+    float time = 99999.99999;
+    PGM_IMG img_obuf;
+    
+    
     printf("Starting GPU processing...\n");
-    //TODO: run your GPU implementation here
-    img_in = img_in; // To avoid warning...
+    
+    checkCudaErrors(cudaEventCreate(&start));
+    checkCudaErrors(cudaEventCreate(&stop));
+    checkCudaErrors(cudaEventRecord(start, 0));
+    img_obuf = contrast_enhancement_g_gpu(img_in);
+    checkCudaErrors(cudaEventRecord(stop, 0));
+    checkCudaErrors(cudaEventSynchronize(stop));
+    checkCudaErrors(cudaEventElapsedTime(&time, start, stop));
+    printf("Processing time: %f (ms)\n", time);
+    
+    write_pgm(img_obuf, "out.pgm");
+    free_pgm(img_obuf);
 }
 
 void run_cpu_color_test(PPM_IMG img_in)

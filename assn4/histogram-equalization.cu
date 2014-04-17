@@ -51,7 +51,7 @@ void histogram_equalization(unsigned char * img_out, unsigned char * img_in,
     }
 }
 
-__global__ static void histogram_gpu(int * hist_out, unsigned char * img_in, int img_size, int nbr_bin){
+__device__ void histogram_gpu(int * hist_out, unsigned char * img_in, int img_size, int nbr_bin){
     
     __shared__ unsigned int temp[256];
     temp[threadIdx.x]=0;
@@ -69,14 +69,14 @@ __global__ static void histogram_gpu(int * hist_out, unsigned char * img_in, int
     atomicAdd(&(hist_out[threadIdx.x]), temp[threadIdx.x]);
     }
 
-__host__ static void histogram_equalization_gpu(unsigned char * img_out, unsigned char * img_in, 
+/*__host__ static void histogram_equalization_gpu(unsigned char * img_out, unsigned char * img_in, 
                             int * hist_in, int img_size, int nbr_bin){
     /* Calculating the lut doesn't really make sense as a massively parallel thing, as it's only going through a maximum of 255 steps
     so lets only cudaize the result image formation step	*/
-    unsigned int lut[nbr_bin] //look up table, same size as hist
+    /*unsigned int lut[nbr_bin] //look up table, same size as hist
     int i, cdf, min, d;
     /* Construct the LUT by calculating the CDF */
-    cdf = 0;
+    /*cdf = 0;
     min = 0;
     i = 0;
     while(min == 0){
@@ -96,11 +96,11 @@ __host__ static void histogram_equalization_gpu(unsigned char * img_out, unsigne
 	
 	/* Get the result image */
 	
-	histogram_image_compile_gpu(img_out, img_in, lut, img_size, nbr_bin);
+	//histogram_image_compile_gpu(img_out, img_in, lut, img_size, nbr_bin);
     
-}
+//}
 
-__global__ histogram_image_compile_gpu(unsigned char * img_out, unsigned char * img_in, 
+/*__global__ histogram_image_compile_gpu(unsigned char * img_out, unsigned char * img_in, 
                             int * lut, int image_size, int nbr_bin) {
 	__shared__ unsigned int memlut[256];
     memlut = lut; //don't know if pointer is correct but I want a local copy of lut
@@ -118,4 +118,4 @@ __global__ histogram_image_compile_gpu(unsigned char * img_out, unsigned char * 
 	for(i = 0; i < chunk_size; i++) {
        img_out[offset+i] = local_img[i];
     }	
-}
+}*/
