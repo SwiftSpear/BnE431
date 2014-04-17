@@ -51,12 +51,11 @@ void histogram_equalization(unsigned char * img_out, unsigned char * img_in,
     }
 }
 
-__global__ static void histogram_gpu(int * hist_out, unsigned char * img_in, int img_size, int nbr_bin){
+__device__ void histogram_gpu(int * hist_out, unsigned char * img_in, int img_size, int nbr_bin){
     
     __shared__ unsigned int temp[256];
     temp[threadIdx.x]=0;
     __syncthreads();
-
     int i = blockIdx.x * blockDim.x + threadIdx.x;
     int offset = blockDim.x * gridDim.x;
 
@@ -97,7 +96,7 @@ __host__ static void histogram_equalization_gpu(unsigned char * img_out, unsigne
                             int * hist_in, int img_size, int nbr_bin){
     /* Calculating the lut doesn't really make sense as a massively parallel thing, as it's only going through a maximum of 255 steps
     so lets only cudaize the result image formation step	*/
-    unsigned int lut[nbr_bin]; //look up table, same size as hist
+    unsigned int lut[nbr_bin] //look up table, same size as hist
     int i, cdf, min, d;
     /* Construct the LUT by calculating the CDF */
     cdf = 0;
@@ -105,6 +104,7 @@ __host__ static void histogram_equalization_gpu(unsigned char * img_out, unsigne
     i = 0;
     while(min == 0){
         min = hist_in[i++]; //find the number of darkest pixels in the image
+
     }
 	d = img_size - min;
     for(i = 0; i < nbr_bin; i ++){
@@ -115,13 +115,12 @@ __host__ static void histogram_equalization_gpu(unsigned char * img_out, unsigne
             lut[i] = 0;
         }
     }    
-        
+       
 
 	
-	/* Get the result image */
+	/* Get the result image*/
 	
-    //	histogram_image_compile_gpu(img_out, img_in, lut, img_size, nbr_bin);
+	//histogram_image_compile_gpu(img_out, img_in, lut, img_size, nbr_bin);
     
 }
-
 
