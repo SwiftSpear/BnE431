@@ -59,7 +59,7 @@ __global__ void histogram_gpu(int * hist_out, unsigned char * img_in, int img_si
     __syncthreads();
 
     int id =  blockIdx.x * blockDim.x + threadIdx.x;
-    int offset = blockDim.x * gridDim.x
+    int offset = blockDim.x * gridDim.x;
     if (id >= img_size)
     {
         return;
@@ -67,7 +67,7 @@ __global__ void histogram_gpu(int * hist_out, unsigned char * img_in, int img_si
 
     while (id < img_size){
         atomicAdd(&temp[img_in[id]],1);
-        i+= offset;
+        id+= offset;
     }
     __syncthreads();
 
