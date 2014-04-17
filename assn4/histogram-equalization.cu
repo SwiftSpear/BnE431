@@ -53,7 +53,7 @@ void histogram_equalization(unsigned char * img_out, unsigned char * img_in,
 
 __global__ void histogram_gpu(int * hist_out, unsigned char * img_in, int img_size, int nbr_bin){
     
-    int id =  threadIdx.x;
+    int id =  blockIdx.x * blockDim.x + threadIdx.x;
     if (id >= img_size)
     {
         return;
@@ -63,6 +63,29 @@ __global__ void histogram_gpu(int * hist_out, unsigned char * img_in, int img_si
 
     int bin = value % nbr_bin;
     atomicAdd(&hist_out[img_in[bin]],1);
+}
+
+void getHist(int * hist_out, unsigned char* img_in, int img_size, int nbr_bin){
+
+    unsigned char * dArray;
+    cudaMalloc(&dArray, img_size);
+    cudaMemcpy(dArray, img_in, img_size,cudaMemcpyHostToDevice);
+
+    int * dHist;
+    cudaMalloc(&dHist, nbr_bin * sizeof(int));
+    cudaMemset(dHist,0,nbr_bin * sizeof(int));
+
+    dim3 block(32);
+    dim3 grid((img_size + block.x - 1)/block.x);
+
+    histogram_gpu<<<grid,block>>>(dHist,dArray,img_size,nbr_bin);
+
+    cudaMemcpy(hist_out,dHist, nbr_bin * sizeof(int), cudaMemcpyDeviceToHost);
+    cudaFree(dArray);
+    cudaFree(dHist);
+
+
+
 }
 
 /*__global__ void histogram_image_compile_gpu(unsigned char * img_out, unsigned char * img_in,

@@ -59,6 +59,7 @@ __global__ void histogram_gpu(int * hist_out, unsigned char * img_in, int img_si
 PGM_IMG contrast_enhancement_g(PGM_IMG img_in);
 PGM_IMG contrast_enhancement_g_gpu(PGM_IMG img_in);
 void histotest(PGM_IMG img_in);
+void getHist(int * hist_out, unsigned char* img_in, int img_size, int nbr_bin);
 
 //Contrast enhancement for color images
 PPM_IMG contrast_enhancement_c_rgb(PPM_IMG img_in);

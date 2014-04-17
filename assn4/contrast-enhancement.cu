@@ -39,7 +39,7 @@ void histotest(PGM_IMG img_in)
     result.w = img_in.w;
     result.h = img_in.h;
     result.img = (unsigned char *)malloc(result.w * result.h * sizeof(unsigned char));
-    histogram_gpu<<<1,512>>>(hist, img_in.img, img_in.h * img_in.w, 256);
+    getHist(hist, img_in.img, img_in.h * img_in.w, 256);
 }
 PPM_IMG contrast_enhancement_c_rgb(PPM_IMG img_in)
 {
